@@ -1,0 +1,210 @@
+/* ==========================================================================
+   FOOTER - LAYOUT (BEM METHODOLOGY)
+   ========================================================================== */
+
+.footer-custom {
+  background-color: $color-dark-300;
+  color: $color-white;
+  padding: $spacing-xl 0 $spacing-lg;
+  border-top: 4px solid $color-primary;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: rgba($color-primary, 0.03);
+    filter: blur(50px);
+  }
+  
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-xl;
+    margin-bottom: $spacing-xl;
+    
+    @include respond-to('md') {
+      grid-template-columns: 1.5fr 1fr 1fr;
+    }
+    
+    @include respond-to('lg') {
+      grid-template-columns: 2fr 1fr 1fr 1.2fr;
+    }
+  }
+  
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+  
+  &__logo {
+    font-family: $font-family-title;
+    font-weight: $font-weight-black;
+    font-size: $font-size-xl;
+    color: $color-white;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    
+    span {
+      color: $color-primary;
+    }
+    
+    svg {
+      color: $color-secondary;
+      width: 24px;
+      height: 24px;
+    }
+  }
+  
+  &__description {
+    font-size: $font-size-sm;
+    color: $color-light-300;
+    line-height: 1.6;
+    max-width: 320px;
+  }
+  
+  &__socials {
+    display: flex;
+    gap: $spacing-sm;
+  }
+  
+  &__social-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: $border-radius-round;
+    background-color: rgba($color-white, 0.05);
+    color: $color-white;
+    @include flex-center;
+    @include transition-standard;
+    border: 1px solid rgba($color-white, 0.1);
+    
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+    
+    &:hover {
+      background-color: $color-secondary;
+      color: $color-white;
+      transform: translateY(-5px) rotate(8deg);
+      border-color: $color-secondary;
+      box-shadow: 0 5px 15px rgba($color-secondary, 0.3);
+    }
+  }
+  
+  &__title {
+    font-family: $font-family-title;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-base;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: $spacing-md;
+    color: $color-white;
+    position: relative;
+    padding-bottom: $spacing-xxs;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background-color: $color-secondary;
+    }
+  }
+  
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+  
+  &__link {
+    font-size: $font-size-sm;
+    color: $color-light-200;
+    @include transition-standard;
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-xxs;
+    
+    &::before {
+      content: '→';
+      opacity: 0;
+      transform: translateX(-10px);
+      @include transition-standard;
+      color: $color-secondary;
+    }
+    
+    &:hover {
+      color: $color-secondary;
+      padding-left: $spacing-xs;
+      
+      &::before {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  }
+  
+  &__contact-item {
+    font-size: $font-size-sm;
+    color: $color-light-200;
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-xs;
+    margin-bottom: $spacing-xs;
+    
+    svg {
+      width: 16px;
+      height: 16px;
+      color: $color-primary;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+  }
+  
+  &__bottom {
+    border-top: 1px solid rgba($color-white, 0.08);
+    padding-top: $spacing-lg;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    align-items: center;
+    text-align: center;
+    
+    @include respond-to('md') {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+  }
+  
+  &__copy {
+    font-size: $font-size-xs;
+    color: $color-light-300;
+  }
+  
+  &__bottom-links {
+    display: flex;
+    gap: $spacing-md;
+  }
+  
+  &__bottom-link {
+    font-size: $font-size-xs;
+    color: $color-light-300;
+    @include transition-standard;
+    
+    &:hover {
+      color: $color-primary;
+    }
+  }
+}

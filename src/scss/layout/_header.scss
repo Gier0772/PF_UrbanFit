@@ -1,0 +1,23 @@
+/* ==========================================================================
+   HEADER - LAYOUT
+   ========================================================================== */
+
+.header-layout {
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  
+  &__top-bar {
+    background-color: $color-dark-300;
+    color: $color-white;
+    font-size: $font-size-xs;
+    padding: $spacing-xxs 0;
+    font-family: $font-family-mono;
+    
+    .container-custom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}

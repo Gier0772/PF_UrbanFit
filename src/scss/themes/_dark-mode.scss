@@ -1,0 +1,188 @@
+/* ==========================================================================
+   DARK THEME OVERRIDES - THEMES
+   ========================================================================== */
+
+.theme-dark {
+  background-color: $color-dark-300;
+  color: $color-white;
+  
+  // Header / Navbar
+  .navbar-custom {
+    @include glassmorphism($opacity: 0.15, $blur: 18px, $border-opacity: 0.1);
+    
+    &__brand {
+      color: $color-white;
+    }
+    
+    &__link {
+      color: $color-light-200;
+      
+      &:hover {
+        color: $color-secondary-light;
+      }
+      
+      &--active {
+        color: $color-secondary-light;
+      }
+    }
+    
+    &--scrolled {
+      background-color: rgba($color-dark-200, 0.95);
+      border-bottom-color: rgba($color-white, 0.1);
+    }
+  }
+  
+  // Section Titles
+  .section-title {
+    &__heading {
+      color: $color-white;
+    }
+  }
+  
+  // Benefit cards in dark mode
+  .benefit-card {
+    background-color: $color-dark-200;
+    border-color: rgba($color-white, 0.08);
+    
+    &__title {
+      color: $color-white;
+    }
+    
+    &__description {
+      color: $color-light-200;
+    }
+    
+    &:hover {
+      border-color: rgba($color-secondary, 0.3);
+      box-shadow: 0 15px 35px rgba($color-secondary, 0.15);
+    }
+  }
+  
+  // Class cards in dark mode
+  .class-card {
+    background-color: $color-dark-200;
+    border-color: rgba($color-white, 0.08);
+    
+    &__title {
+      color: $color-white;
+    }
+    
+    &__description {
+      color: $color-light-200;
+    }
+    
+    &__meta {
+      border-top-color: rgba($color-white, 0.08);
+    }
+    
+    &__meta-item {
+      color: $color-light-200;
+      
+      svg {
+        color: $color-secondary-light;
+      }
+    }
+    
+    &:hover {
+      box-shadow: 0 15px 30px rgba($color-primary, 0.2);
+    }
+  }
+  
+  // Trainer cards in dark mode
+  .trainer-card {
+    background-color: $color-dark-200;
+    border-color: rgba($color-white, 0.08);
+    
+    &__info {
+      background-color: $color-dark-200;
+    }
+    
+    &__name {
+      color: $color-white;
+    }
+    
+    &__bio {
+      color: $color-light-200;
+    }
+  }
+  
+  // Plan cards in dark mode
+  .plan-card {
+    background-color: $color-dark-200;
+    border-color: rgba($color-white, 0.08);
+    
+    &__name {
+      color: $color-white;
+    }
+    
+    &__price-value {
+      color: $color-white;
+    }
+    
+    &__price-currency {
+      color: $color-white;
+    }
+    
+    &__price-period {
+      color: $color-light-200;
+    }
+    
+    &__feature-item {
+      color: $color-light-200;
+      border-bottom-color: rgba($color-white, 0.08);
+    }
+    
+    &--featured {
+      background-color: shade-color($color-secondary, 85%);
+      border-color: $color-secondary;
+      
+      .plan-card__name {
+        color: $color-secondary-light;
+      }
+      
+      .plan-card__price-value {
+        color: $color-secondary-light;
+      }
+      
+      &:hover {
+        box-shadow: 0 20px 45px rgba($color-secondary, 0.35);
+      }
+    }
+  }
+  
+  // Testimonial Carousel in dark mode
+  .testimonial-carousel {
+    &__quote {
+      color: $color-white;
+    }
+    
+    &__name {
+      color: $color-white;
+    }
+    
+    &__role {
+      color: $color-secondary-light;
+    }
+  }
+  
+  // Contact Form in dark mode
+  .contact-form {
+    background-color: $color-dark-200;
+    border-color: rgba($color-white, 0.08);
+    
+    &__label {
+      color: $color-white;
+    }
+    
+    &__input, &__select, &__textarea {
+      background-color: $color-dark-300;
+      border-color: rgba($color-white, 0.1);
+      color: $color-white;
+      
+      &:focus {
+        border-color: $color-secondary;
+        box-shadow: 0 0 10px rgba($color-secondary, 0.2);
+      }
+    }
+  }
+}

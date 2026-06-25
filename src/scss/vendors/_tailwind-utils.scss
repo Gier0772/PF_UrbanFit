@@ -1,0 +1,17 @@
+/* ==========================================================================
+   TAILWIND UTILITIES BRIDGE - VENDORS
+   ========================================================================== */
+
+// Tailwind v4 classes are imported in src/index.css and processed by Vite.
+// This SASS file acts as a cascade bridge for specific utility overrides
+// to make SASS and Tailwind co-exist perfectly.
+
+.tw-spacing-custom {
+  letter-spacing: 0.1em;
+}
+
+.tw-text-gradient-primary {
+  background: linear-gradient(135deg, #6C63FF, #FF6B6B);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

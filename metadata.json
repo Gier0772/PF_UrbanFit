@@ -1,0 +1,6 @@
+{
+  "name": "UrbanFit - Gimnasio Moderno",
+  "description": "Landing page completa y profesional para el gimnasio UrbanFit, utilizando arquitectura SASS 7-1, metodología BEM, Bootstrap 5 y utilidades de Tailwind CSS, con un panel de documentación técnica interactivo.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

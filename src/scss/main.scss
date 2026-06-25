@@ -1,0 +1,36 @@
+/* ==========================================================================
+   URBANFIT MAIN SASS ENTRYPOINT - ARCHITECTURE 7-1
+   ========================================================================== */
+
+// 1. Abstracts (Variables, Mixins, Functions, Breakpoints)
+@import "abstracts/variables";
+@import "abstracts/breakpoints";
+@import "abstracts/functions";
+@import "abstracts/mixins";
+
+// 2. Base (Global elements, Typography, Browser Resets)
+@import "base/reset";
+@import "base/typography";
+@import "base/base";
+
+// 3. Components (Animations, Buttons, Custom Cards, Navbar, Hero)
+@import "components/animations";
+@import "components/buttons";
+@import "components/cards";
+@import "components/navbar";
+@import "components/hero";
+
+// 4. Layout (Header, Footer, Feature-Query Re-Grids)
+@import "layout/header";
+@import "layout/footer";
+@import "layout/grid";
+
+// 5. Pages (Home Section specific styling)
+@import "pages/home";
+
+// 6. Themes (Dark Mode theme overrides)
+@import "themes/dark-mode";
+
+// 7. Vendors (Bootstrap Overrides, Tailwind bridge)
+@import "vendors/bootstrap-custom";
+@import "vendors/tailwind-utils";

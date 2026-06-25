@@ -1,0 +1,50 @@
+/* ==========================================================================
+   BASE & PERFORMANCE OPTIMIZATIONS - BASE
+   ========================================================================== */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; // Prevent navigation covering section titles
+}
+
+body {
+  background-color: $color-light-100;
+  overflow-x: hidden;
+  width: 100vw;
+}
+
+// Global responsive container
+.container-custom {
+  width: 100%;
+  padding-right: $spacing-md;
+  padding-left: $spacing-md;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1200px;
+}
+
+// Performance Optimization: GPU acceleration for hardware-heavy parts
+.hero-custom,
+.benefit-card,
+.class-card,
+.trainer-card,
+.plan-card,
+.testimonial-carousel {
+  /* Pre-signals the GPU to allocate composition layers for transforms and opacity,
+     avoiding standard repaint cycles during hover or scroll triggers */
+  will-change: transform, opacity;
+  
+  /* Isolates visual rendering blocks to prevent cascade reflows across the global DOM */
+  contain: layout;
+}
+
+// Specific isolation for complex canvas/animated overlays
+.u-heavy-animation {
+  contain: paint layout content;
+}
+
+// Custom text selection
+::selection {
+  background-color: $color-primary;
+  color: $color-white;
+}

@@ -1,0 +1,208 @@
+/* ==========================================================================
+   HOME PAGE - PAGES
+   ========================================================================== */
+
+.home-section {
+  padding: $spacing-xl 0;
+  position: relative;
+  
+  @include respond-to('md') {
+    padding: $spacing-huge 0;
+  }
+  
+  &--light {
+    background-color: $color-light-100;
+  }
+  
+  &--dark {
+    background-color: $color-dark-200;
+    color: $color-white;
+    
+    .section-title__heading {
+      color: $color-white;
+    }
+    
+    p {
+      color: $color-light-200;
+    }
+  }
+}
+
+// Background decorative elements (Using rotate and scale transforms)
+.home-decor {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.05;
+  z-index: 1;
+  
+  &--dots {
+    background-image: radial-gradient($color-primary 2px, transparent 2px);
+    background-size: 16px 16px;
+    width: 200px;
+    height: 200px;
+  }
+  
+  &--top-right {
+    top: 50px;
+    right: 50px;
+    transform: rotate(45deg);
+  }
+  
+  &--bottom-left {
+    bottom: 50px;
+    left: 50px;
+    transform: rotate(-15deg) scale(1.2);
+  }
+}
+
+// Custom styled Testimonial section using Bootstrap Carousel structure
+.testimonial-carousel {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  
+  &__item {
+    padding: $spacing-md $spacing-xl;
+    
+    @include respond-to('md') {
+      padding: $spacing-lg $spacing-huge;
+    }
+  }
+  
+  &__quote {
+    font-size: $font-size-md;
+    font-style: italic;
+    font-weight: $font-weight-medium;
+    color: $color-dark-100;
+    line-height: 1.6;
+    margin-bottom: $spacing-lg;
+    position: relative;
+    
+    @include respond-to('md') {
+      font-size: $font-size-lg;
+    }
+    
+    &::before, &::after {
+      font-family: Georgia, serif;
+      font-size: 4rem;
+      line-height: 0.1;
+      color: rgba($color-primary, 0.15);
+      position: absolute;
+    }
+    
+    &::before {
+      content: '“';
+      top: -10px;
+      left: -30px;
+    }
+    
+    &::after {
+      content: '”';
+      bottom: -30px;
+      right: -10px;
+    }
+  }
+  
+  &__rating {
+    @include flex-center($direction: row);
+    gap: $spacing-xxs;
+    color: #F1C40F;
+    margin-bottom: $spacing-md;
+    
+    svg {
+      width: 18px;
+      height: 18px;
+      fill: #F1C40F;
+    }
+  }
+  
+  &__author {
+    @include flex-center($direction: column);
+    gap: $spacing-xs;
+  }
+  
+  &__avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: $border-radius-round;
+    border: 3px solid $color-primary;
+    object-fit: cover;
+    box-shadow: $shadow-md;
+  }
+  
+  &__name {
+    font-family: $font-family-title;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-base;
+    color: $color-dark-100;
+  }
+  
+  &__role {
+    font-size: $font-size-xs;
+    color: $color-primary;
+    font-family: $font-family-mono;
+    text-transform: uppercase;
+    font-weight: $font-weight-bold;
+    letter-spacing: 0.05em;
+  }
+}
+
+// Custom Styled Form using Bootstrap grid structure
+.contact-form {
+  background-color: $color-white;
+  padding: $spacing-xl;
+  border-radius: $border-radius-xl;
+  box-shadow: $shadow-lg;
+  border: 1px solid rgba($color-light-200, 0.8);
+  position: relative;
+  z-index: 2;
+  
+  &__group {
+    margin-bottom: $spacing-md;
+    position: relative;
+  }
+  
+  &__label {
+    font-family: $font-family-title;
+    font-weight: $font-weight-semibold;
+    font-size: $font-size-xs;
+    color: $color-dark-100;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: $spacing-xxs;
+    display: block;
+  }
+  
+  &__input, &__select, &__textarea {
+    width: 100%;
+    padding: $spacing-sm $spacing-md;
+    border-radius: $border-radius-md;
+    border: 2px solid $color-light-200;
+    font-family: $font-family-base;
+    font-size: $font-size-sm;
+    color: $color-dark-100;
+    background-color: $color-light-100;
+    outline: none;
+    transition: all 0.2s ease;
+    
+    &:focus {
+      border-color: $color-primary;
+      background-color: $color-white;
+      box-shadow: 0 0 10px rgba($color-primary, 0.1);
+    }
+  }
+  
+  &__textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  
+  &__checkbox-label {
+    font-size: $font-size-xs;
+    color: shade-color($color-light-300, 50%);
+    cursor: pointer;
+    user-select: none;
+  }
+}

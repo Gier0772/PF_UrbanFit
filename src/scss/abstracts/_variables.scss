@@ -1,0 +1,81 @@
+/* ==========================================================================
+   SASS VARIABLES - ABSTRACTS
+   ========================================================================== */
+
+// Brand Colors
+$color-primary: #6C63FF;         // Royal energy purple
+$color-primary-light: #8E87FF;   // Lighter shade of purple
+$color-primary-dark: #4A3AFF;    // Darker shade of purple
+$color-secondary: #FF6B6B;       // Passionate coral/orange-red
+$color-secondary-light: #FF8E8E; // Lighter coral
+$color-secondary-dark: #E04E4E;  // Darker coral
+
+// Neutral Colors
+$color-dark-100: #2D3436;        // Deep charcoal (text & primary dark background)
+$color-dark-200: #1E2325;        // Darker background tint
+$color-dark-300: #121516;        // Absolute near-black background
+$color-light-100: #F8F9FA;       // Soft off-white
+$color-light-200: #E9ECEF;       // Soft gray
+$color-light-300: #DEE2E6;       // Mid-tone gray
+$color-white: #FFFFFF;
+$color-black: #000000;
+
+// Semantic Colors
+$color-success: #2ECC71;
+$color-info: #3498DB;
+$color-warning: #F1C40F;
+$color-danger: #E74C3C;
+
+// Typography (As specified in guidelines)
+$font-family-title: 'Montserrat', sans-serif;
+$font-family-base: 'Poppins', sans-serif;
+$font-family-mono: 'JetBrains Mono', monospace;
+
+// Font Sizes
+$font-size-xs: 0.75rem;   // 12px
+$font-size-sm: 0.875rem;  // 14px
+$font-size-base: 1rem;    // 16px
+$font-size-md: 1.125rem;  // 18px
+$font-size-lg: 1.25rem;   // 20px
+$font-size-xl: 1.5rem;    // 24px
+$font-size-2xl: 2rem;     // 32px
+$font-size-3xl: 3rem;     // 48px
+$font-size-4xl: 4rem;     // 64px
+
+// Font Weights
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-black: 800;
+
+// Spacers (Fluid Scale)
+$spacing-xxs: 0.25rem;
+$spacing-xs: 0.5rem;
+$spacing-sm: 0.75rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 3rem;
+$spacing-xxl: 4rem;
+$spacing-huge: 6rem;
+
+// Border Radius
+$border-radius-sm: 0.25rem;
+$border-radius-md: 0.5rem;
+$border-radius-lg: 1rem;
+$border-radius-xl: 1.5rem;
+$border-radius-round: 50%;
+$border-radius-pill: 9999px;
+
+// Shadows (Soft, modern depth)
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 10px 30px rgba(108, 99, 255, 0.15);
+$shadow-secondary-lg: 0 10px 30px rgba(255, 107, 107, 0.15);
+$shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+
+// Transitions (Required: cubic-bezier with bounce/smooth bounce)
+$transition-duration-base: 0.3s;
+$transition-timing-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+$transition-standard: all $transition-duration-base $transition-timing-bounce;

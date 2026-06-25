@@ -1,0 +1,31 @@
+/* ==========================================================================
+   FUNCTIONS - ABSTRACTS
+   ========================================================================== */
+
+// Convert Pixels to Rem
+// Assumes base browser font-size is 16px
+@function px-to-rem($px-value) {
+  @if not unitless($px-value) {
+    $px-value: $px-value / ($px-value * 0 + 1); // strip unit
+  }
+  @return ($px-value / 16) * 1rem;
+}
+
+// Tint a color (make it lighter)
+@function tint-color($color, $percentage) {
+  @return mix($color-white, $color, $percentage);
+}
+
+// Shade a color (make it darker)
+@function shade-color($color, $percentage) {
+  @return mix($color-black, $color, $percentage);
+}
+
+// Soft contrast color chooser
+@function choose-contrast-color($background-color) {
+  @if (lightness($background-color) > 50) {
+    @return $color-dark-100;
+  } @else {
+    @return $color-white;
+  }
+}

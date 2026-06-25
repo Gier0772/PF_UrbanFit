@@ -1,0 +1,225 @@
+/* ==========================================================================
+   HERO - COMPONENTS (BEM METHODOLOGY)
+   ========================================================================== */
+
+.hero-custom {
+  position: relative;
+  min-height: 100vh;
+  padding-top: 120px;
+  padding-bottom: $spacing-huge;
+  @include flex-center($direction: column, $justify: center);
+  color: $color-white;
+  overflow: hidden;
+  
+  // Custom overlay blend mode for subtle dark vignette
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba($color-dark-300, 0.2) 0%, rgba($color-dark-300, 0.8) 100%);
+    z-index: 1;
+  }
+  
+  &__container {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-xl;
+    align-items: center;
+    
+    @include respond-to('lg') {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+  }
+  
+  &__content {
+    text-align: center;
+    
+    @include respond-to('lg') {
+      text-align: left;
+    }
+  }
+  
+  &__badge {
+    background-color: rgba($color-secondary, 0.15);
+    border: 1px solid rgba($color-secondary, 0.3);
+    color: $color-secondary-light;
+    font-family: $font-family-mono;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-xs;
+    text-transform: uppercase;
+    padding: $spacing-xxs $spacing-md;
+    border-radius: $border-radius-pill;
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-xs;
+    margin-bottom: $spacing-md;
+    backdrop-filter: blur(4px);
+    
+    &::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: $color-secondary;
+      box-shadow: 0 0 8px $color-secondary;
+    }
+  }
+  
+  &__title {
+    font-family: $font-family-title;
+    font-size: px-to-rem(36);
+    font-weight: $font-weight-black;
+    line-height: 1.1;
+    color: $color-white;
+    margin-bottom: $spacing-md;
+    letter-spacing: -0.03em;
+    
+    @include respond-to('sm') {
+      font-size: px-to-rem(48);
+    }
+    
+    @include respond-to('md') {
+      font-size: px-to-rem(56);
+    }
+    
+    @include respond-to('xl') {
+      font-size: px-to-rem(64);
+    }
+    
+    span {
+      background: linear-gradient(135deg, $color-secondary, #FFA8A8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+  }
+  
+  &__subtitle {
+    font-size: $font-size-base;
+    color: $color-light-200;
+    margin-bottom: $spacing-xl;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+    
+    @include respond-to('lg') {
+      margin-left: 0;
+      font-size: $font-size-md;
+    }
+  }
+  
+  &__actions {
+    @include flex-center($direction: column, $justify: center);
+    gap: $spacing-sm;
+    margin-bottom: $spacing-xl;
+    
+    @include respond-to('sm') {
+      flex-direction: row;
+    }
+    
+    @include respond-to('lg') {
+      justify-content: flex-start;
+    }
+  }
+  
+  // STATS WRAPPER IN HERO
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-md;
+    margin-top: $spacing-xl;
+    background: rgba($color-white, 0.05);
+    border: 1px solid rgba($color-white, 0.1);
+    border-radius: $border-radius-lg;
+    padding: $spacing-lg;
+    backdrop-filter: blur(10px);
+    
+    @include respond-to('sm') {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  &__visual {
+    display: none;
+    justify-content: center;
+    position: relative;
+    
+    @include respond-to('lg') {
+      display: flex;
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 110%;
+      height: 110%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba($color-primary, 0.15) 0%, rgba($color-primary, 0) 70%);
+      z-index: -1;
+    }
+  }
+  
+  &__img-container {
+    width: 320px;
+    height: 320px;
+    border-radius: $border-radius-round;
+    border: 8px solid rgba($color-white, 0.08);
+    overflow: hidden;
+    box-shadow: $shadow-lg;
+    background-color: $color-dark-200;
+    animation: float 6s infinite ease-in-out;
+    
+    @include respond-to('xl') {
+      width: 400px;
+      height: 400px;
+    }
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+// BEM stats sub-components
+.stat-item {
+  text-align: center;
+  padding: $spacing-xs;
+  border-right: 1px solid rgba($color-white, 0.1);
+  
+  &:last-child {
+    border-right: none;
+  }
+  
+  &__number {
+    font-family: $font-family-title;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-black;
+    color: $color-secondary-light;
+    display: block;
+    line-height: 1.1;
+    margin-bottom: $spacing-xxs;
+    
+    @include respond-to('md') {
+      font-size: $font-size-2xl;
+    }
+  }
+  
+  &__label {
+    font-size: $font-size-xs;
+    color: $color-light-200;
+    text-transform: uppercase;
+    font-weight: $font-weight-medium;
+    letter-spacing: 0.05em;
+    display: block;
+  }
+}

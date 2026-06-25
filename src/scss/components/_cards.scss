@@ -1,0 +1,400 @@
+/* ==========================================================================
+   CARDS - COMPONENTS (BEM METHODOLOGY)
+   ========================================================================== */
+
+// 1. BENEFIT CARD
+.benefit-card {
+  background-color: $color-white;
+  padding: $spacing-xl $spacing-lg;
+  border-radius: $border-radius-lg;
+  text-align: center;
+  box-shadow: $shadow-md;
+  @include transition-standard;
+  border: 1px solid rgba($color-light-200, 0.8);
+  position: relative;
+  overflow: hidden;
+  
+  // Icon styling using custom flex container
+  &__icon-container {
+    width: 70px;
+    height: 70px;
+    background-color: rgba($color-primary, 0.08);
+    color: $color-primary;
+    border-radius: $border-radius-lg;
+    @include flex-center;
+    margin: 0 auto $spacing-lg;
+    @include transition-standard;
+    
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+  
+  &__title {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: $color-dark-100;
+    margin-bottom: $spacing-sm;
+    font-family: $font-family-title;
+  }
+  
+  &__description {
+    font-size: $font-size-sm;
+    color: shade-color($color-light-300, 50%);
+    line-height: 1.5;
+  }
+  
+  // Hover effect: lift up, change background of icon and apply glow shadow
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba($color-primary, 0.12);
+    border-color: rgba($color-primary, 0.2);
+    
+    .benefit-card__icon-container {
+      background-color: $color-primary;
+      color: $color-white;
+      transform: scale(1.1) rotate(5deg);
+    }
+  }
+}
+
+
+// 2. CLASS CARD (Grid system compatible)
+.class-card {
+  background-color: $color-white;
+  border-radius: $border-radius-xl;
+  overflow: hidden;
+  box-shadow: $shadow-md;
+  @include transition-standard;
+  border: 1px solid rgba($color-light-200, 0.8);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  
+  &__img-wrapper {
+    position: relative;
+    overflow: hidden;
+    height: 220px;
+    background-color: $color-dark-300;
+  }
+  
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    @include transition-standard;
+  }
+  
+  &__badge {
+    position: absolute;
+    top: $spacing-md;
+    right: $spacing-md;
+    background-color: rgba($color-dark-100, 0.85);
+    color: $color-white;
+    font-family: $font-family-title;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-xs;
+    text-transform: uppercase;
+    padding: $spacing-xxs $spacing-sm;
+    border-radius: $border-radius-sm;
+    backdrop-filter: blur(4px);
+    z-index: 10;
+  }
+  
+  &__body {
+    padding: $spacing-lg;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  
+  &__title {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    margin-bottom: $spacing-xs;
+    color: $color-dark-100;
+  }
+  
+  &__description {
+    font-size: $font-size-sm;
+    color: shade-color($color-light-300, 45%);
+    margin-bottom: $spacing-lg;
+    flex-grow: 1;
+    line-height: 1.5;
+  }
+  
+  &__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid $color-light-200;
+    padding-top: $spacing-md;
+    margin-bottom: $spacing-md;
+  }
+  
+  &__meta-item {
+    font-size: $font-size-xs;
+    color: shade-color($color-light-300, 50%);
+    @include flex-center($direction: row, $justify: flex-start, $align: center);
+    gap: $spacing-xxs;
+    font-family: $font-family-mono;
+    
+    svg {
+      width: 14px;
+      height: 14px;
+      color: $color-primary;
+    }
+  }
+  
+  &__rating {
+    @include flex-center($direction: row);
+    gap: 2px;
+    color: #F1C40F; // Gold
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    font-family: $font-family-mono;
+    
+    svg {
+      width: 14px;
+      height: 14px;
+      fill: #F1C40F;
+    }
+  }
+  
+  // Hover zoom and lift
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+    
+    .class-card__img {
+      transform: scale(1.1);
+    }
+  }
+}
+
+
+// 3. TRAINER CARD
+.trainer-card {
+  background-color: $color-white;
+  border-radius: $border-radius-xl;
+  overflow: hidden;
+  box-shadow: $shadow-md;
+  @include transition-standard;
+  text-align: center;
+  border: 1px solid rgba($color-light-200, 0.8);
+  position: relative;
+  
+  &__img-container {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+    background-color: $color-dark-200;
+  }
+  
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    @include transition-standard;
+  }
+  
+  &__ribbon {
+    position: absolute;
+    top: 20px;
+    left: -10px;
+    z-index: 10;
+    @include ribbon-clip($color-secondary);
+    box-shadow: 0 4px 10px rgba($color-black, 0.2);
+  }
+  
+  &__info {
+    padding: $spacing-lg;
+    background-color: $color-white;
+    position: relative;
+    z-index: 2;
+  }
+  
+  &__name {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: $color-dark-100;
+    margin-bottom: $spacing-xxs;
+    font-family: $font-family-title;
+  }
+  
+  &__specialty {
+    font-size: $font-size-xs;
+    color: $color-primary;
+    text-transform: uppercase;
+    font-family: $font-family-mono;
+    font-weight: $font-weight-bold;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: $spacing-sm;
+  }
+  
+  &__bio {
+    font-size: $font-size-sm;
+    color: shade-color($color-light-300, 40%);
+    line-height: 1.4;
+  }
+  
+  &__rating {
+    @include flex-center($direction: row);
+    gap: 3px;
+    color: #F1C40F;
+    font-size: $font-size-xs;
+    margin-top: $spacing-sm;
+    font-family: $font-family-mono;
+    font-weight: $font-weight-bold;
+    
+    svg {
+      width: 14px;
+      height: 14px;
+      fill: #F1C40F;
+    }
+  }
+  
+  // Hover styling
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 40px rgba($color-primary, 0.1);
+    
+    .trainer-card__img {
+      transform: scale(1.08) rotate(1deg);
+    }
+  }
+}
+
+
+// 4. PLAN CARD (Bootstrap Card enhancements with BEM modifiers)
+.plan-card {
+  background-color: $color-white;
+  border-radius: $border-radius-xl;
+  padding: $spacing-xl $spacing-lg;
+  box-shadow: $shadow-md;
+  @include transition-standard;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 2px solid transparent;
+  
+  &__ribbon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: $color-secondary;
+    color: $color-white;
+    font-size: $font-size-xs;
+    font-family: $font-family-title;
+    font-weight: $font-weight-black;
+    text-transform: uppercase;
+    padding: $spacing-xxs $spacing-sm;
+    border-radius: $border-radius-pill;
+    letter-spacing: 0.05em;
+  }
+  
+  &__name {
+    font-family: $font-family-title;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-black;
+    color: $color-dark-100;
+    text-transform: uppercase;
+    margin-bottom: $spacing-sm;
+  }
+  
+  &__price-box {
+    @include flex-center($direction: row, $justify: center, $align: flex-end);
+    margin-bottom: $spacing-lg;
+  }
+  
+  &__price-currency {
+    font-family: $font-family-title;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $color-dark-100;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  
+  &__price-value {
+    font-family: $font-family-title;
+    font-size: px-to-rem(56);
+    font-weight: $font-weight-black;
+    color: $color-dark-100;
+    line-height: 1;
+  }
+  
+  &__price-period {
+    font-size: $font-size-sm;
+    color: shade-color($color-light-300, 45%);
+    margin-left: $spacing-xxs;
+    margin-bottom: 0.5rem;
+  }
+  
+  &__features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 $spacing-xl;
+    text-align: left;
+    flex-grow: 1;
+  }
+  
+  &__feature-item {
+    padding: $spacing-xs 0;
+    font-size: $font-size-sm;
+    color: shade-color($color-light-300, 50%);
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    border-bottom: 1px dashed $color-light-200;
+    
+    &--disabled {
+      color: $color-light-300;
+      text-decoration: line-through;
+      
+      svg {
+        color: $color-light-300 !important;
+      }
+    }
+    
+    svg {
+      width: 16px;
+      height: 16px;
+      color: $color-success;
+      flex-shrink: 0;
+    }
+  }
+  
+  // Hover lift
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  }
+  
+  // Featured Modifier: Highly prominent card styled as recommended
+  &--featured {
+    border-color: $color-primary;
+    background-color: shade-color($color-primary, 85%); // Extremely subtle purple background hint
+    box-shadow: $shadow-lg;
+    transform: scale(1.02);
+    animation: glow 4s infinite ease-in-out;
+    
+    .plan-card__name {
+      color: $color-primary;
+    }
+    
+    .plan-card__price-value {
+      color: $color-primary;
+    }
+    
+    // Feature card hover overrides scale slightly more
+    &:hover {
+      transform: translateY(-8px) scale(1.04);
+      box-shadow: 0 20px 45px rgba($color-primary, 0.25);
+    }
+  }
+}

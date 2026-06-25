@@ -1,0 +1,57 @@
+/* ==========================================================================
+   MIXINS - ABSTRACTS
+   ========================================================================== */
+
+// Responsive Breakpoints Mixin (Mobile-First)
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @error "El breakpoint '#{$breakpoint}' no existe en el mapa de breakpoints.";
+  }
+}
+
+// Centering items using Flexbox
+@mixin flex-center($direction: row, $justify: center, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+// Hover effects with transitions and transforms
+@mixin hover-lift($translateY: -8px, $scale: 1.03, $shadow: $shadow-lg) {
+  @include transition-standard;
+  
+  &:hover {
+    transform: translateY($translateY) scale($scale);
+    box-shadow: $shadow;
+  }
+}
+
+// Standard Transition Mixin
+@mixin transition-standard {
+  transition: all $transition-duration-base $transition-timing-bounce;
+}
+
+// Glassmorphism effect for modern overlays
+@mixin glassmorphism($opacity: 0.1, $blur: 10px, $border-opacity: 0.1) {
+  background: rgba($color-white, $opacity);
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid rgba($color-white, $border-opacity);
+}
+
+// Clip path badge ribbon
+@mixin ribbon-clip($bg-color: $color-secondary) {
+  background-color: $bg-color;
+  color: $color-white;
+  font-family: $font-family-title;
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
+  font-size: $font-size-xs;
+  padding: $spacing-xxs $spacing-md;
+  clip-path: polygon(100% 0, 90% 50%, 100% 100%, 0 100%, 0 0);
+}

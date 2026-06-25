@@ -1,0 +1,94 @@
+/* ==========================================================================
+   TYPOGRAPHY - BASE
+   ========================================================================== */
+
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: 1.6;
+  color: $color-dark-100;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family-title;
+  color: $color-dark-100;
+  line-height: 1.2;
+  font-weight: $font-weight-bold;
+  letter-spacing: -0.025em;
+}
+
+h1 {
+  font-size: $font-size-3xl;
+  
+  @include respond-to('md') {
+    font-size: $font-size-4xl;
+  }
+}
+
+h2 {
+  font-size: $font-size-2xl;
+  
+  @include respond-to('md') {
+    font-size: $font-size-3xl;
+  }
+}
+
+h3 {
+  font-size: $font-size-xl;
+  
+  @include respond-to('md') {
+    font-size: $font-size-2xl;
+  }
+}
+
+p {
+  font-size: $font-size-base;
+  margin-bottom: $spacing-md;
+  color: shade-color($color-light-300, 60%);
+}
+
+.text-mono {
+  font-family: $font-family-mono;
+}
+
+// Custom title accent BEM pattern
+.section-title {
+  text-align: center;
+  margin-bottom: $spacing-xl;
+  
+  &__eyebrow {
+    font-family: $font-family-mono;
+    color: $color-secondary;
+    font-size: $font-size-sm;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: $font-weight-bold;
+    display: block;
+    margin-bottom: $spacing-xs;
+  }
+  
+  &__heading {
+    font-family: $font-family-title;
+    font-weight: $font-weight-black;
+    color: $color-dark-100;
+    
+    span {
+      color: $color-primary;
+    }
+  }
+  
+  &__separator {
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, $color-primary, $color-secondary);
+    margin: $spacing-sm auto 0;
+    border-radius: $border-radius-pill;
+  }
+}

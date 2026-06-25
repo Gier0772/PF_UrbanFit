@@ -1,0 +1,193 @@
+/* ==========================================================================
+   NAVBAR - COMPONENTS (BEM METHODOLOGY)
+   ========================================================================== */
+
+.navbar-custom {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: $spacing-md 0;
+  @include transition-standard;
+  @include glassmorphism($opacity: 0.85, $blur: 15px, $border-opacity: 0.08);
+  border-bottom: 1px solid rgba($color-white, 0.05);
+  
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  &__brand {
+    font-family: $font-family-title;
+    font-weight: $font-weight-black;
+    font-size: $font-size-xl;
+    color: $color-dark-100;
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    @include transition-standard;
+    
+    span {
+      color: $color-primary;
+    }
+    
+    &:hover {
+      transform: scale(1.03);
+      color: $color-primary;
+    }
+    
+    svg {
+      color: $color-secondary;
+      width: 28px;
+      height: 28px;
+      animation: float 3s infinite ease-in-out;
+    }
+  }
+  
+  &__menu {
+    display: none;
+    gap: $spacing-lg;
+    align-items: center;
+    
+    @include respond-to('lg') {
+      display: flex;
+    }
+  }
+  
+  &__link {
+    font-family: $font-family-title;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: shade-color($color-light-300, 60%);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    position: relative;
+    padding: $spacing-xs 0;
+    @include transition-standard;
+    
+    // Smooth custom hover underline expanding outward
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, $color-primary, $color-secondary);
+      @include transition-standard;
+      transform: translateX(-50%);
+    }
+    
+    &:hover {
+      color: $color-primary;
+      
+      &::after {
+        width: 100%;
+      }
+    }
+    
+    &--active {
+      color: $color-primary;
+      
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+  
+  &__cta {
+    display: none;
+    
+    @include respond-to('md') {
+      display: inline-flex;
+    }
+  }
+  
+  &__toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    z-index: 1001;
+    
+    span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: $color-dark-100;
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    
+    @include respond-to('lg') {
+      display: none;
+    }
+    
+    &--open {
+      span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+      span:nth-child(2) {
+        opacity: 0;
+      }
+      span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+    }
+  }
+  
+  // Scrolled active styles (sticky transition state)
+  &--scrolled {
+    padding: $spacing-sm 0;
+    background-color: rgba($color-white, 0.95);
+    box-shadow: $shadow-md;
+    border-bottom-color: rgba($color-light-200, 0.8);
+  }
+}
+
+// Mobile sidebar drawer
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 280px;
+  height: 100vh;
+  background-color: $color-white;
+  z-index: 999;
+  box-shadow: $shadow-lg;
+  padding: 80px $spacing-lg $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  @include transition-standard;
+  
+  &--open {
+    left: 0;
+  }
+  
+  &__link {
+    font-family: $font-family-title;
+    font-size: $font-size-md;
+    font-weight: $font-weight-bold;
+    color: $color-dark-100;
+    text-transform: uppercase;
+    padding: $spacing-xs 0;
+    border-bottom: 1px solid $color-light-200;
+    display: block;
+    @include transition-standard;
+    
+    &:hover {
+      color: $color-primary;
+      padding-left: $spacing-xs;
+    }
+  }
+}

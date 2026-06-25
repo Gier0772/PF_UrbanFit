@@ -1,0 +1,38 @@
+/* ==========================================================================
+   BOOTSTRAP OVERRIDES & COMPATIBILITY - VENDORS
+   ========================================================================== */
+
+// Override Bootstrap default shadows and focus borders
+.carousel-indicators [data-bs-target] {
+  background-color: $color-primary;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin: 0 6px;
+  @include transition-standard;
+  
+  &.active {
+    background-color: $color-secondary;
+    transform: scale(1.3);
+  }
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba($color-dark-100, 0.4);
+  padding: $spacing-md;
+  border-radius: 50%;
+  background-size: 50%;
+  @include transition-standard;
+  
+  &:hover {
+    background-color: $color-primary;
+    transform: scale(1.1);
+  }
+}
+
+// Adjust Bootstrap card styles to not clash with BEM cards
+.card {
+  border: none;
+  background: none;
+}
