@@ -2,6 +2,8 @@
    BASE & PERFORMANCE OPTIMIZATIONS - BASE
    ========================================================================== */
 
+@use "sass:color";
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px; // Prevent navigation covering section titles

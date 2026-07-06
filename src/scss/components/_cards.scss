@@ -2,6 +2,8 @@
    CARDS - COMPONENTS (BEM METHODOLOGY)
    ========================================================================== */
 
+@use "sass:color";
+
 // 1. BENEFIT CARD
 .benefit-card {
   background-color: $color-white;
@@ -41,7 +43,7 @@
   
   &__description {
     font-size: $font-size-sm;
-    color: shade-color($color-light-300, 50%);
+    color: color.mix(#000000, $color-light-300, 50%);
     line-height: 1.5;
   }
   
@@ -118,7 +120,7 @@
   
   &__description {
     font-size: $font-size-sm;
-    color: shade-color($color-light-300, 45%);
+    color: color.mix(#000000, $color-light-300, 45%);
     margin-bottom: $spacing-lg;
     flex-grow: 1;
     line-height: 1.5;
@@ -135,7 +137,7 @@
   
   &__meta-item {
     font-size: $font-size-xs;
-    color: shade-color($color-light-300, 50%);
+    color: color.mix(#000000, $color-light-300, 50%);
     @include flex-center($direction: row, $justify: flex-start, $align: center);
     gap: $spacing-xxs;
     font-family: $font-family-mono;
@@ -236,7 +238,7 @@
   
   &__bio {
     font-size: $font-size-sm;
-    color: shade-color($color-light-300, 40%);
+    color: color.mix(#000000, $color-light-300, 40%);
     line-height: 1.4;
   }
   
@@ -330,7 +332,7 @@
   
   &__price-period {
     font-size: $font-size-sm;
-    color: shade-color($color-light-300, 45%);
+    color: color.mix(#000000, $color-light-300, 45%);
     margin-left: $spacing-xxs;
     margin-bottom: 0.5rem;
   }
@@ -346,7 +348,7 @@
   &__feature-item {
     padding: $spacing-xs 0;
     font-size: $font-size-sm;
-    color: shade-color($color-light-300, 50%);
+    color: color.mix(#000000, $color-light-300, 50%);
     display: flex;
     align-items: center;
     gap: $spacing-sm;
@@ -378,7 +380,7 @@
   // Featured Modifier: Highly prominent card styled as recommended
   &--featured {
     border-color: $color-primary;
-    background-color: shade-color($color-primary, 85%); // Extremely subtle purple background hint
+    background-color: color.mix(#000000, $color-primary, 85%); // Extremely subtle purple background hint
     box-shadow: $shadow-lg;
     transform: scale(1.02);
     animation: glow 4s infinite ease-in-out;

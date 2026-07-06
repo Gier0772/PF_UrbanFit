@@ -2,6 +2,8 @@
    FOOTER - LAYOUT (BEM METHODOLOGY)
    ========================================================================== */
 
+@use "sass:color";
+
 .footer-custom {
   background-color: $color-dark-300;
   color: $color-white;

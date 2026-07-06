@@ -2,6 +2,8 @@
    HOME PAGE - PAGES
    ========================================================================== */
 
+@use "sass:color";
+
 .home-section {
   padding: $spacing-xl 0;
   position: relative;
@@ -201,7 +203,7 @@
   
   &__checkbox-label {
     font-size: $font-size-xs;
-    color: shade-color($color-light-300, 50%);
+    color: color.mix(#000000, $color-light-300, 50%);
     cursor: pointer;
     user-select: none;
   }

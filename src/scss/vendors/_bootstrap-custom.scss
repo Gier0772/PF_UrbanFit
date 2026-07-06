@@ -2,6 +2,8 @@
    BOOTSTRAP OVERRIDES & COMPATIBILITY - VENDORS
    ========================================================================== */
 
+@use "sass:color";
+
 // Override Bootstrap default shadows and focus borders
 .carousel-indicators [data-bs-target] {
   background-color: $color-primary;

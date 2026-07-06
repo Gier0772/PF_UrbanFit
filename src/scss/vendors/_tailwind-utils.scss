@@ -2,6 +2,8 @@
    TAILWIND UTILITIES BRIDGE - VENDORS
    ========================================================================== */
 
+@use "sass:color";
+
 // Tailwind v4 classes are imported in src/index.css and processed by Vite.
 // This SASS file acts as a cascade bridge for specific utility overrides
 // to make SASS and Tailwind co-exist perfectly.

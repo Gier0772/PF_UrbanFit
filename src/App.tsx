@@ -3,14 +3,12 @@ import {
   Dumbbell, 
   CheckCircle2, 
   Award, 
-  Shield, 
   Users, 
   Star, 
   Menu, 
   X, 
   ChevronLeft, 
   ChevronRight, 
-  Info, 
   Sparkles, 
   MapPin, 
   Phone, 
@@ -36,7 +34,7 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [activeSection, setActiveSection] = useState<string>('inicio');
 
-  // Testimonial Carousel state (manual slide index for absolute reliability in React)
+  // Testimonial Carousel state
   const [currentSlide, setCurrentSlide] = useState<number>(0);
 
   // Form submission state
@@ -55,7 +53,7 @@ export default function App() {
   const [selectedSassFile, setSelectedSassFile] = useState<string>('variables');
   const [animLabSelected, setAnimLabSelected] = useState<string>('anim-pulse');
 
-  // Track window scroll to change navbar styling
+  // Track window scroll
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -64,7 +62,6 @@ export default function App() {
         setIsScrolled(false);
       }
 
-      // Dynamic active section spy
       const sections = ['inicio', 'beneficios', 'clases', 'entrenadores', 'planes', 'testimonios', 'contacto'];
       for (const section of sections) {
         const el = document.getElementById(section);
@@ -107,7 +104,6 @@ export default function App() {
     setCurrentSlide(prev => (prev - 1 + 3) % 3);
   };
 
-  // Testimonial mock data
   const testimonials = [
     {
       id: 1,
@@ -135,18 +131,15 @@ export default function App() {
     }
   ];
 
-  // SASS Code snippets for the Academic SASS 7-1 Code Viewer
   const sassFilesCode: Record<string, { path: string; desc: string; code: string }> = {
     variables: {
       path: "abstracts/_variables.scss",
       desc: "Declaración limpia del sistema de diseño, colores institucionales, fuentes, sombras y constantes.",
       code: `// Brand Colors
-$color-primary: #6C63FF;         // Royal energy purple
-$color-secondary: #FF6B6B;       // Passionate coral/orange-red
-$color-dark-100: #2D3436;        // Charcoal black text
-$color-light-100: #F8F9FA;       // Soft background off-white
-
-// Transitions (Cubic-bezier curves with rubber bounce)
+$color-primary: #6C63FF;
+$color-secondary: #FF6B6B;
+$color-dark-100: #2D3436;
+$color-light-100: #F8F9FA;
 $transition-duration-base: 0.3s;
 $transition-timing-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
 $transition-standard: all $transition-duration-base $transition-timing-bounce;`
@@ -154,18 +147,14 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
     mixins: {
       path: "abstracts/_mixins.scss",
       desc: "Estructuras reutilizables para adaptabilidad responsiva, centrado y efectos hover uniformes.",
-      code: `// Responsive Mobile-First Breakpoints
-@mixin respond-to($breakpoint) {
+      code: `@mixin respond-to($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
     @media (min-width: map-get($breakpoints, $breakpoint)) {
       @content;
     }
-  } @else {
-    @error "El breakpoint '#{$breakpoint}' no existe.";
   }
 }
 
-// Hover lift effects with smooth scaling and translateY
 @mixin hover-lift($translateY: -8px, $scale: 1.03) {
   @include transition-standard;
   &:hover {
@@ -177,19 +166,12 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
     animations: {
       path: "components/_animations.scss",
       desc: "Las 12 animaciones por hardware creadas con keyframes de CSS y bucle generador de delays.",
-      code: `// Custom elásticas keyframes
-@keyframes pulse {
+      code: `@keyframes pulse {
   0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(108, 99, 255, 0.6); }
   70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(108, 99, 255, 0); }
   100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(108, 99, 255, 0); }
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
-}
-
-// Bucle SASS for delays (DRY Principle)
 @for $i from 1 through 10 {
   .anim-delay-#{$i} {
     animation-delay: #{$i * 0.15}s;
@@ -200,13 +182,11 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
     grid: {
       path: "layout/_grid.scss",
       desc: "Consultas de características (@supports) para dar soporte de diseño a navegadores antiguos.",
-      code: `// Fallback block layout para navegadores antiguos
-.regrid-grid {
+      code: `.regrid-grid {
   display: block;
   &__col { float: left; width: 100%; }
 }
 
-// Detección de característica moderna
 @supports (display: grid) {
   .regrid-grid {
     display: grid;
@@ -219,8 +199,7 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
     cards: {
       path: "components/_cards.scss",
       desc: "Uso riguroso de BEM para el control visual de tarjetas de beneficios, clases y planes.",
-      code: `/* BEM: Block__Element--Modifier */
-.class-card {
+      code: `.class-card {
   background-color: $color-white;
   border-radius: $border-radius-xl;
   overflow: hidden;
@@ -231,7 +210,6 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
   &__badge { position: absolute; top: 1rem; right: 1rem; }
   &__body { padding: 1.5rem; }
 
-  // Modifier state on hover
   &:hover {
     transform: translateY(-6px);
     .class-card__img { transform: scale(1.1); }
@@ -243,7 +221,7 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
   return (
     <div className={`app-container ${darkMode ? 'theme-dark' : ''}`} style={{ width: '100vw', overflowX: 'hidden' }}>
       
-      {/* 1. NAVBAR (Sticky & Responsive BEM component) */}
+      {/* NAVBAR */}
       <nav id="navbar" className={`navbar-custom ${isScrolled ? 'navbar-custom--scrolled' : ''}`}>
         <div className="container-custom navbar-custom__container">
           <a href="#inicio" className="navbar-custom__brand">
@@ -251,7 +229,6 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
             <span>Urban</span>Fit
           </a>
 
-          {/* Desktop Navigation Links */}
           <div className="navbar-custom__menu">
             <a href="#beneficios" className={`navbar-custom__link ${activeSection === 'beneficios' ? 'navbar-custom__link--active' : ''}`}>Beneficios</a>
             <a href="#clases" className={`navbar-custom__link ${activeSection === 'clases' ? 'navbar-custom__link--active' : ''}`}>Clases</a>
@@ -261,13 +238,20 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
             <a href="#contacto" className={`navbar-custom__link ${activeSection === 'contacto' ? 'navbar-custom__link--active' : ''}`}>Contacto</a>
           </div>
 
-          <div className="navbar-custom__cta">
+          <div className="navbar-custom__cta" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <button 
+              onClick={() => setDarkMode(!darkMode)}
+              className="btn-urban btn-urban--outline btn-urban--sm"
+              style={{ padding: '0.4rem 0.8rem', fontSize: '0.7rem', minWidth: '36px' }}
+              aria-label="Cambiar modo oscuro"
+            >
+              {darkMode ? '☀️' : '🌙'}
+            </button>
             <a href="#contacto" className="btn-urban btn-urban--primary btn-urban--pulse">
               Únete Ahora
             </a>
           </div>
 
-          {/* Mobile hamburger menu toggle */}
           <button 
             id="nav-toggle"
             className={`navbar-custom__toggle ${isMenuOpen ? 'navbar-custom__toggle--open' : ''}`}
@@ -281,7 +265,7 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
         </div>
       </nav>
 
-      {/* Mobile Drawer (BEM Component) */}
+      {/* Mobile Drawer */}
       <div className={`mobile-nav ${isMenuOpen ? 'mobile-nav--open' : ''}`}>
         <a href="#beneficios" className="mobile-nav__link" onClick={() => setIsMenuOpen(false)}>Beneficios</a>
         <a href="#clases" className="mobile-nav__link" onClick={() => setIsMenuOpen(false)}>Clases</a>
@@ -296,7 +280,7 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
         </div>
       </div>
 
-      {/* 2. HERO SECTION (Dynamic Animated Background & Stats Grid) */}
+      {/* HERO SECTION */}
       <section id="inicio" className="hero-custom anim-gradient-bg">
         <div className="container-custom hero-custom__container">
           <div className="hero-custom__content anim-slide-in-left">
@@ -331,7 +315,6 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
           </div>
         </div>
 
-        {/* CSS Grid Stats system in Hero */}
         <div className="container-custom">
           <div className="hero-custom__stats anim-fade-in-up anim-delay-4">
             <div className="stat-item">
@@ -354,7 +337,7 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
         </div>
       </section>
 
-      {/* 3. BENEFICIOS SECTION (Responsive Grid & Hover Bounce Cards) */}
+      {/* BENEFICIOS SECTION */}
       <section id="beneficios" className="home-section home-section--light">
         <div className="home-decor home-decor--dots home-decor--top-right"></div>
         
@@ -365,7 +348,6 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
             <div className="section-title__separator"></div>
           </div>
 
-          {/* Grilla CSS Grid adaptativa */}
           <div className="regrid-grid regrid-grid--benefits">
             <div className="regrid-grid__col">
               <div className="benefit-card anim-scale-in anim-delay-1 anim-bounce-hover">
@@ -418,7 +400,7 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
         </div>
       </section>
 
-      {/* 4. CLASES POPULARES SECTION (Grid + Rich Card Thumbnails & Media Queries) */}
+      {/* CLASES SECTION */}
       <section id="clases" className="home-section">
         <div className="container-custom">
           <div className="section-title">
@@ -428,8 +410,6 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
           </div>
 
           <div className="regrid-grid regrid-grid--classes">
-            
-            {/* Clase 1 - Yoga Flow */}
             <div className="regrid-grid__col">
               <div className="class-card">
                 <div className="class-card__img-wrapper">
@@ -461,7 +441,6 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
               </div>
             </div>
 
-            {/* Clase 2 - HIIT Fusion */}
             <div className="regrid-grid__col">
               <div className="class-card">
                 <div className="class-card__img-wrapper">
@@ -493,7 +472,6 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
               </div>
             </div>
 
-            {/* Clase 3 - Spinning Power */}
             <div className="regrid-grid__col">
               <div className="class-card">
                 <div className="class-card__img-wrapper">
@@ -525,7 +503,6 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
               </div>
             </div>
 
-            {/* Clase 4 - Boxeo Pro */}
             <div className="regrid-grid__col">
               <div className="class-card">
                 <div className="class-card__img-wrapper">
@@ -556,12 +533,11 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* 5. ENTRENADORES SECTION (BEM + Specialty + Ribbon highlighted cards) */}
+      {/* ENTRENADORES SECTION */}
       <section id="entrenadores" className="home-section home-section--light">
         <div className="container-custom">
           <div className="section-title">
@@ -571,8 +547,6 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
           </div>
 
           <div className="regrid-grid regrid-grid--trainers">
-            
-            {/* Entrenador 1 - Andrés */}
             <div className="regrid-grid__col">
               <div className="trainer-card">
                 <div className="trainer-card__img-container">
@@ -596,7 +570,6 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
               </div>
             </div>
 
-            {/* Entrenador 2 - Sofía (Destacado con Ribbon) */}
             <div className="regrid-grid__col">
               <div className="trainer-card">
                 <span className="trainer-card__ribbon">Head Coach</span>
@@ -621,7 +594,6 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
               </div>
             </div>
 
-            {/* Entrenador 3 - Carlos */}
             <div className="regrid-grid__col">
               <div className="trainer-card">
                 <div className="trainer-card__img-container">
@@ -644,12 +616,11 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* 6. PLANES DE PRECIOS SECTION (Bootstrap Grid + SASS Modifiers & glow) */}
+      {/* PLANES SECTION */}
       <section id="planes" className="home-section">
         <div className="container-custom">
           <div className="section-title">
@@ -659,8 +630,6 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
           </div>
 
           <div className="row g-4 justify-content-center">
-            
-            {/* Plan 1 - Básico */}
             <div className="col-12 col-md-6 col-lg-4">
               <div className="plan-card">
                 <h3 className="plan-card__name">Plan Básico</h3>
@@ -669,35 +638,20 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
                   <span className="plan-card__price-value">29</span>
                   <span className="plan-card__price-period">/mes</span>
                 </div>
-                
                 <ul className="plan-card__features">
-                  <li className="plan-card__feature-item">
-                    <Check /> Acceso a sala de musculación
-                  </li>
-                  <li className="plan-card__feature-item">
-                    <Check /> Vestidores y regaderas
-                  </li>
-                  <li className="plan-card__feature-item">
-                    <Check /> Plan inicial de bienvenida
-                  </li>
-                  <li className="plan-card__feature-item plan-card__feature-item--disabled">
-                    <X /> Clases grupales incluidas
-                  </li>
-                  <li className="plan-card__feature-item plan-card__feature-item--disabled">
-                    <X /> Asesoría nutricional mensual
-                  </li>
-                  <li className="plan-card__feature-item plan-card__feature-item--disabled">
-                    <X /> Coach personal de seguimiento
-                  </li>
+                  <li className="plan-card__feature-item"><Check /> Acceso a sala de musculación</li>
+                  <li className="plan-card__feature-item"><Check /> Vestidores y regaderas</li>
+                  <li className="plan-card__feature-item"><Check /> Plan inicial de bienvenida</li>
+                  <li className="plan-card__feature-item plan-card__feature-item--disabled"><X /> Clases grupales incluidas</li>
+                  <li className="plan-card__feature-item plan-card__feature-item--disabled"><X /> Asesoría nutricional mensual</li>
+                  <li className="plan-card__feature-item plan-card__feature-item--disabled"><X /> Coach personal de seguimiento</li>
                 </ul>
-
                 <a href="#contacto" className="btn-urban btn-urban--outline btn-urban--block text-center mt-auto">
                   Seleccionar Básico
                 </a>
               </div>
             </div>
 
-            {/* Plan 2 - Pro (Featured with BEM glow/ribbon) */}
             <div className="col-12 col-md-6 col-lg-4">
               <div className="plan-card plan-card--featured anim-glow">
                 <span className="plan-card__ribbon">Recomendado</span>
@@ -707,35 +661,20 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
                   <span className="plan-card__price-value">59</span>
                   <span className="plan-card__price-period">/mes</span>
                 </div>
-                
                 <ul className="plan-card__features">
-                  <li className="plan-card__feature-item">
-                    <Check /> Acceso a sala de musculación
-                  </li>
-                  <li className="plan-card__feature-item">
-                    <Check /> Vestidores y regaderas
-                  </li>
-                  <li className="plan-card__feature-item">
-                    <Check /> Plan inicial de bienvenida
-                  </li>
-                  <li className="plan-card__feature-item">
-                    <Check /> <b>Clases grupales ilimitadas</b>
-                  </li>
-                  <li className="plan-card__feature-item">
-                    <Check /> Acceso a la comunidad de alumnos
-                  </li>
-                  <li className="plan-card__feature-item plan-card__feature-item--disabled">
-                    <X /> Coach personal de seguimiento
-                  </li>
+                  <li className="plan-card__feature-item"><Check /> Acceso a sala de musculación</li>
+                  <li className="plan-card__feature-item"><Check /> Vestidores y regaderas</li>
+                  <li className="plan-card__feature-item"><Check /> Plan inicial de bienvenida</li>
+                  <li className="plan-card__feature-item"><Check /> <b>Clases grupales ilimitadas</b></li>
+                  <li className="plan-card__feature-item"><Check /> Acceso a la comunidad de alumnos</li>
+                  <li className="plan-card__feature-item plan-card__feature-item--disabled"><X /> Coach personal de seguimiento</li>
                 </ul>
-
                 <a href="#contacto" className="btn-urban btn-urban--secondary btn-urban--block text-center mt-auto btn-urban--pulse">
                   Adquirir Pro Ahora
                 </a>
               </div>
             </div>
 
-            {/* Plan 3 - VIP */}
             <div className="col-12 col-md-6 col-lg-4">
               <div className="plan-card">
                 <h3 className="plan-card__name">Plan VIP</h3>
@@ -744,39 +683,24 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
                   <span className="plan-card__price-value">99</span>
                   <span className="plan-card__price-period">/mes</span>
                 </div>
-                
                 <ul className="plan-card__features">
-                  <li className="plan-card__feature-item">
-                    <Check /> Acceso a sala de musculación
-                  </li>
-                  <li className="plan-card__feature-item">
-                    <Check /> Vestidores y regaderas
-                  </li>
-                  <li className="plan-card__feature-item">
-                    <Check /> Plan inicial de bienvenida
-                  </li>
-                  <li className="plan-card__feature-item">
-                    <Check /> Clases grupales ilimitadas
-                  </li>
-                  <li className="plan-card__feature-item">
-                    <Check /> <b>Asesoría nutricional mensual</b>
-                  </li>
-                  <li className="plan-card__feature-item">
-                    <Check /> <b>Coach personal de seguimiento</b>
-                  </li>
+                  <li className="plan-card__feature-item"><Check /> Acceso a sala de musculación</li>
+                  <li className="plan-card__feature-item"><Check /> Vestidores y regaderas</li>
+                  <li className="plan-card__feature-item"><Check /> Plan inicial de bienvenida</li>
+                  <li className="plan-card__feature-item"><Check /> Clases grupales ilimitadas</li>
+                  <li className="plan-card__feature-item"><Check /> <b>Asesoría nutricional mensual</b></li>
+                  <li className="plan-card__feature-item"><Check /> <b>Coach personal de seguimiento</b></li>
                 </ul>
-
                 <a href="#contacto" className="btn-urban btn-urban--outline btn-urban--block text-center mt-auto">
                   Seleccionar VIP
                 </a>
               </div>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* 7. TESTIMONIOS SECTION (Custom Controlled Bootstrap-like carousel layout) */}
+      {/* TESTIMONIOS SECTION */}
       <section id="testimonios" className="home-section home-section--light">
         <div className="home-decor home-decor--dots home-decor--bottom-left"></div>
         
@@ -788,7 +712,6 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
           </div>
 
           <div className="testimonial-carousel position-relative">
-            {/* Carousel track wrapper */}
             <div className="card shadow-lg bg-white rounded-5 p-4 p-md-5 overflow-hidden border-0">
               <div className="testimonial-carousel__item transition-all duration-500">
                 <div className="testimonial-carousel__rating">
@@ -813,7 +736,6 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
                 </div>
               </div>
 
-              {/* Slider Buttons Controls */}
               <div className="flex gap-4 justify-center mt-8">
                 <button 
                   onClick={prevTestimonial}
@@ -846,12 +768,10 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
         </div>
       </section>
 
-      {/* 8. CONTACTO & FORM SECTION (Bootstrap inputs styled with SASS BEM) */}
+      {/* CONTACTO SECTION */}
       <section id="contacto" className="home-section">
         <div className="container-custom">
           <div className="row g-5 align-items-center">
-            
-            {/* Contact Details Column */}
             <div className="col-12 col-lg-5">
               <div className="section-title text-start mb-5" style={{ textAlign: 'left' }}>
                 <span className="section-title__eyebrow" style={{ margin: '0 0 10px 0' }}>Comienza Hoy</span>
@@ -898,7 +818,6 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
               </div>
             </div>
 
-            {/* Form Column */}
             <div className="col-12 col-lg-7">
               <div className="contact-form">
                 {isSubmitted ? (
@@ -972,7 +891,7 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
                     </div>
 
                     <div className="contact-form__group">
-                      <label className="contact-form__label" htmlFor="mensaje">Mensaje Opcional (Lesiones, metas de peso, etc.)</label>
+                      <label className="contact-form__label" htmlFor="mensaje">Mensaje Opcional</label>
                       <textarea 
                         id="mensaje"
                         name="mensaje"
@@ -1005,17 +924,14 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
                 )}
               </div>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* 9. FOOTER SECTION (BEM + Social Lift + Contact Info) */}
+      {/* FOOTER SECTION */}
       <footer className="footer-custom">
         <div className="container-custom">
-          
           <div className="footer-custom__grid">
-            
             <div className="footer-custom__brand">
               <div className="footer-custom__logo">
                 <Dumbbell />
@@ -1109,7 +1025,6 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
                 </li>
               </ul>
             </div>
-
           </div>
 
           <div className="footer-custom__bottom">
@@ -1121,36 +1036,33 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
               <a href="#inicio" className="footer-custom__bottom-link">Términos de Uso</a>
             </div>
           </div>
-
         </div>
       </footer>
 
-      {/* 🎓 FLOATING ACADEMIC TRIGGER BUTTON */}
+      {/* ACADEMIC TRIGGER BUTTON */}
       <div className="fixed bottom-6 right-6 z-50">
         <button 
           id="academic-trigger"
           onClick={() => setShowAcademicPanel(true)}
           className="bg-purple-600 hover:bg-purple-700 text-white font-bold p-4 rounded-full shadow-2xl flex items-center gap-2 hover:scale-110 active:scale-95 transition-all duration-300"
           style={{ 
-            boxShadow: '0 10px 30px rgba(108, 99, 255, 0.4)',
+            boxShadow: '0 10px 30px rgba(159, 158, 165, 0.6)',
             willChange: 'transform',
-            contain: 'layout paint'
+            contain: 'layout paint',
+            border: '2px solid grey'
           }}
           title="Ver Panel Académico del Curso"
         >
-          <BookOpen size={24} className="animate-bounce" />
-          <span className="text-sm font-semibold pr-1 hidden sm:inline">Panel Académico</span>
+          <BookOpen size={24} className="animate-bounce" style={{ color: '#9d9d9d' }} />
+          <span className="text-sm font-semibold pr-1 hidden sm:inline" style={{ color: '#a4a4a4' }}>Panel Académico</span>
         </button>
       </div>
 
-      {/* 🎓 INTERACTIVE EDUCATIONAL SHOWCASE DASHBOARD OVERLAY */}
+      {/* ACADEMIC PANEL OVERLAY */}
       {showAcademicPanel && (
-        <div className="fixed inset-0 bg-black/70 z-[2000] flex justify-end items-stretch animate-fade-in animate__fadeIn">
-          
-          {/* Backdrop Click Dismiss */}
+        <div className="fixed inset-0 bg-black/70 z-[2000] flex justify-end items-stretch animate-fade-in">
           <div className="absolute inset-0 z-10" onClick={() => setShowAcademicPanel(false)}></div>
 
-          {/* Code panel body */}
           <div 
             className="relative z-20 w-full max-w-4xl bg-white shadow-2xl flex flex-col items-stretch h-full overflow-hidden anim-slide-in-right"
             style={{ 
@@ -1159,8 +1071,6 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
               contain: 'layout'
             }}
           >
-            
-            {/* Header Area */}
             <div className="bg-gradient-to-r from-purple-700 to-indigo-800 p-6 text-white flex justify-between items-center shrink-0">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-white/10 rounded-lg">
@@ -1180,12 +1090,9 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
               </button>
             </div>
 
-            {/* Quick settings area */}
             <div className="bg-purple-50 px-6 py-3 border-b border-purple-100 flex flex-wrap justify-between items-center gap-3 shrink-0">
               <div className="flex items-center gap-4">
                 <span className="text-xs font-bold text-purple-800 uppercase tracking-widest font-mono">Prueba Interactiva:</span>
-                
-                {/* 🎨 DARK MODE SWITCHER */}
                 <button 
                   onClick={() => setDarkMode(!darkMode)}
                   className={`px-3 py-1 text-xs font-bold rounded-full border transition-all duration-300 flex items-center gap-1.5 ${darkMode ? 'bg-purple-800 text-white border-purple-800' : 'bg-white text-purple-800 border-purple-200 hover:border-purple-300'}`}
@@ -1200,7 +1107,6 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
               </div>
             </div>
 
-            {/* Nav Tabs for Academic views */}
             <div className="flex border-b border-gray-200 overflow-x-auto bg-gray-50 shrink-0 select-none">
               <button 
                 onClick={() => setActiveAcademicTab('sass71')}
@@ -1238,27 +1144,21 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
               </button>
             </div>
 
-            {/* TAB CONTENTS (Scrollable content) */}
             <div className="flex-grow overflow-y-auto p-6 bg-white">
-              
-              {/* TAB 1: SASS 7-1 EXPLORER */}
               {activeAcademicTab === 'sass71' && (
                 <div className="space-y-4 animate-fade-in">
                   <div className="bg-purple-50 p-4 rounded-xl border border-purple-100">
                     <h4 className="font-extrabold text-purple-900 text-base mb-1">Estructura de Carpetas SASS 7-1</h4>
                     <p className="text-gray-700 text-xs leading-relaxed m-0">
-                      El proyecto está configurado de forma modular. Hemos separado todo el diseño en partials organizados en 7 directorios lógicos. SASS compila de forma limpia unificándolos a través del importador principal <b>scss/main.scss</b>.
+                      El proyecto está configurado de forma modular. Hemos separado todo el diseño en partials organizados en 7 directorios lógicos.
                     </p>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    
-                    {/* Folder tree */}
                     <div className="border border-gray-200 rounded-xl p-3 bg-gray-50 text-xs font-mono">
                       <div className="font-bold text-purple-800 mb-2 border-b border-gray-200 pb-1">📂 src/scss/</div>
                       <div className="space-y-1">
-                        <div>
-                          <span className="text-purple-600">📁 abstracts/</span>
+                        <div><span className="text-purple-600">📁 abstracts/</span>
                           <div className="pl-4 text-gray-600 space-y-0.5">
                             <div className={`cursor-pointer hover:text-purple-600 p-0.5 rounded ${selectedSassFile === 'variables' ? 'bg-purple-100 text-purple-800 font-bold' : ''}`} onClick={() => setSelectedSassFile('variables')}>📄 _variables.scss</div>
                             <div className={`cursor-pointer hover:text-purple-600 p-0.5 rounded ${selectedSassFile === 'mixins' ? 'bg-purple-100 text-purple-800 font-bold' : ''}`} onClick={() => setSelectedSassFile('mixins')}>📄 _mixins.scss</div>
@@ -1266,18 +1166,10 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
                             <div>📄 _breakpoints.scss</div>
                           </div>
                         </div>
-
-                        <div>
-                          <span className="text-purple-600">📁 base/</span>
-                          <div className="pl-4 text-gray-600">
-                            <div>📄 _reset.scss</div>
-                            <div>📄 _typography.scss</div>
-                            <div>📄 _base.scss</div>
-                          </div>
+                        <div><span className="text-purple-600">📁 base/</span>
+                          <div className="pl-4 text-gray-600"><div>📄 _reset.scss</div><div>📄 _typography.scss</div><div>📄 _base.scss</div></div>
                         </div>
-
-                        <div>
-                          <span className="text-purple-600">📁 components/</span>
+                        <div><span className="text-purple-600">📁 components/</span>
                           <div className="pl-4 text-gray-600 space-y-0.5">
                             <div className={`cursor-pointer hover:text-purple-600 p-0.5 rounded ${selectedSassFile === 'animations' ? 'bg-purple-100 text-purple-800 font-bold' : ''}`} onClick={() => setSelectedSassFile('animations')}>📄 _animations.scss</div>
                             <div className={`cursor-pointer hover:text-purple-600 p-0.5 rounded ${selectedSassFile === 'cards' ? 'bg-purple-100 text-purple-800 font-bold' : ''}`} onClick={() => setSelectedSassFile('cards')}>📄 _cards.scss</div>
@@ -1286,43 +1178,20 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
                             <div>📄 _hero.scss</div>
                           </div>
                         </div>
-
-                        <div>
-                          <span className="text-purple-600">📁 layout/</span>
+                        <div><span className="text-purple-600">📁 layout/</span>
                           <div className="pl-4 text-gray-600">
                             <div className={`cursor-pointer hover:text-purple-600 p-0.5 rounded ${selectedSassFile === 'grid' ? 'bg-purple-100 text-purple-800 font-bold' : ''}`} onClick={() => setSelectedSassFile('grid')}>📄 _grid.scss</div>
                             <div>📄 _footer.scss</div>
                             <div>📄 _header.scss</div>
                           </div>
                         </div>
-
-                        <div>
-                          <span className="text-purple-600">📁 pages/</span>
-                          <div className="pl-4 text-gray-600">
-                            <div>📄 _home.scss</div>
-                          </div>
-                        </div>
-
-                        <div>
-                          <span className="text-purple-600">📁 themes/</span>
-                          <div className="pl-4 text-gray-600">
-                            <div>📄 _dark-mode.scss</div>
-                          </div>
-                        </div>
-
-                        <div>
-                          <span className="text-purple-600">📁 vendors/</span>
-                          <div className="pl-4 text-gray-600">
-                            <div>📄 _bootstrap-custom.scss</div>
-                            <div>📄 _tailwind-utils.scss</div>
-                          </div>
-                        </div>
-
+                        <div><span className="text-purple-600">📁 pages/</span><div className="pl-4 text-gray-600"><div>📄 _home.scss</div></div></div>
+                        <div><span className="text-purple-600">📁 themes/</span><div className="pl-4 text-gray-600"><div>📄 _dark-mode.scss</div></div></div>
+                        <div><span className="text-purple-600">📁 vendors/</span><div className="pl-4 text-gray-600"><div>📄 _bootstrap-custom.scss</div><div>📄 _tailwind-utils.scss</div></div></div>
                         <div className="font-bold text-indigo-700">📄 main.scss (Consolidador)</div>
                       </div>
                     </div>
 
-                    {/* Code Viewer column */}
                     <div className="col-span-2 flex flex-col items-stretch border border-gray-200 rounded-xl overflow-hidden">
                       <div className="bg-gray-800 text-gray-300 px-4 py-2 text-xs font-mono flex justify-between items-center">
                         <span>Código SASS: {sassFilesCode[selectedSassFile].path}</span>
@@ -1335,116 +1204,38 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
                         <code>{sassFilesCode[selectedSassFile].code}</code>
                       </pre>
                     </div>
-
                   </div>
                 </div>
               )}
 
-              {/* TAB 2: ANIMATION LAB */}
               {activeAcademicTab === 'animations' && (
                 <div className="space-y-4 animate-fade-in">
                   <div className="bg-purple-50 p-4 rounded-xl border border-purple-100">
                     <h4 className="font-extrabold text-purple-900 text-base mb-1">Laboratorio de Animaciones por Hardware (12 en total)</h4>
                     <p className="text-gray-700 text-xs leading-relaxed m-0">
-                      Utilizamos la regla `@keyframes` de SASS para crear 12 animaciones personalizadas de alto impacto. Haz clic en cualquier botón de abajo para activar y previsualizar la animación instantáneamente sobre la mancuerna de pruebas.
+                      Utilizamos la regla `@keyframes` de SASS para crear 12 animaciones personalizadas.
                     </p>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                    
-                    {/* Controls */}
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                      <button 
-                        onClick={() => setAnimLabSelected('anim-fade-in')} 
-                        className={`px-3 py-2 text-xs font-bold rounded-lg border text-left transition-all ${animLabSelected === 'anim-fade-in' ? 'bg-purple-600 text-white border-purple-600 shadow-md' : 'bg-white hover:bg-gray-100 border-gray-200 text-gray-700'}`}
-                      >
-                        1. fadeIn
-                      </button>
-
-                      <button 
-                        onClick={() => setAnimLabSelected('anim-fade-in-up')} 
-                        className={`px-3 py-2 text-xs font-bold rounded-lg border text-left transition-all ${animLabSelected === 'anim-fade-in-up' ? 'bg-purple-600 text-white border-purple-600 shadow-md' : 'bg-white hover:bg-gray-100 border-gray-200 text-gray-700'}`}
-                      >
-                        2. fadeInUp
-                      </button>
-
-                      <button 
-                        onClick={() => setAnimLabSelected('anim-slide-in-left')} 
-                        className={`px-3 py-2 text-xs font-bold rounded-lg border text-left transition-all ${animLabSelected === 'anim-slide-in-left' ? 'bg-purple-600 text-white border-purple-600 shadow-md' : 'bg-white hover:bg-gray-100 border-gray-200 text-gray-700'}`}
-                      >
-                        3. slideInLeft
-                      </button>
-
-                      <button 
-                        onClick={() => setAnimLabSelected('anim-slide-in-right')} 
-                        className={`px-3 py-2 text-xs font-bold rounded-lg border text-left transition-all ${animLabSelected === 'anim-slide-in-right' ? 'bg-purple-600 text-white border-purple-600 shadow-md' : 'bg-white hover:bg-gray-100 border-gray-200 text-gray-700'}`}
-                      >
-                        4. slideInRight
-                      </button>
-
-                      <button 
-                        onClick={() => setAnimLabSelected('anim-scale-in')} 
-                        className={`px-3 py-2 text-xs font-bold rounded-lg border text-left transition-all ${animLabSelected === 'anim-scale-in' ? 'bg-purple-600 text-white border-purple-600 shadow-md' : 'bg-white hover:bg-gray-100 border-gray-200 text-gray-700'}`}
-                      >
-                        5. scaleIn (Zoom)
-                      </button>
-
-                      <button 
-                        onClick={() => setAnimLabSelected('anim-pulse')} 
-                        className={`px-3 py-2 text-xs font-bold rounded-lg border text-left transition-all ${animLabSelected === 'anim-pulse' ? 'bg-purple-600 text-white border-purple-600 shadow-md' : 'bg-white hover:bg-gray-100 border-gray-200 text-gray-700'}`}
-                      >
-                        6. pulse (CTA)
-                      </button>
-
-                      <button 
-                        onClick={() => setAnimLabSelected('anim-float')} 
-                        className={`px-3 py-2 text-xs font-bold rounded-lg border text-left transition-all ${animLabSelected === 'anim-float' ? 'bg-purple-600 text-white border-purple-600 shadow-md' : 'bg-white hover:bg-gray-100 border-gray-200 text-gray-700'}`}
-                      >
-                        7. float (Icono)
-                      </button>
-
-                      <button 
-                        onClick={() => setAnimLabSelected('anim-spin')} 
-                        className={`px-3 py-2 text-xs font-bold rounded-lg border text-left transition-all ${animLabSelected === 'anim-spin' ? 'bg-purple-600 text-white border-purple-600 shadow-md' : 'bg-white hover:bg-gray-100 border-gray-200 text-gray-700'}`}
-                      >
-                        8. spin (Loader)
-                      </button>
-
-                      <button 
-                        onClick={() => setAnimLabSelected('anim-glow')} 
-                        className={`px-3 py-2 text-xs font-bold rounded-lg border text-left transition-all ${animLabSelected === 'anim-glow' ? 'bg-purple-600 text-white border-purple-600 shadow-md' : 'bg-white hover:bg-gray-100 border-gray-200 text-gray-700'}`}
-                      >
-                        9. glow ( VIP border)
-                      </button>
-
-                      <button 
-                        onClick={() => setAnimLabSelected('anim-bounce-hover')} 
-                        className={`px-3 py-2 text-xs font-bold rounded-lg border text-left transition-all ${animLabSelected === 'anim-bounce-hover' ? 'bg-purple-600 text-white border-purple-600 shadow-md' : 'bg-white hover:bg-gray-100 border-gray-200 text-gray-700'}`}
-                      >
-                        10. bounce (Hover)
-                      </button>
-
-                      <button 
-                        onClick={() => setAnimLabSelected('anim-gradient-bg')} 
-                        className={`px-3 py-2 text-xs font-bold rounded-lg border text-left transition-all ${animLabSelected === 'anim-gradient-bg' ? 'bg-purple-600 text-white border-purple-600 shadow-md' : 'bg-white hover:bg-gray-100 border-gray-200 text-gray-700'}`}
-                      >
-                        11. gradientShift
-                      </button>
-
-                      <button 
-                        onClick={() => setAnimLabSelected('anim-typing')} 
-                        className={`px-3 py-2 text-xs font-bold rounded-lg border text-left transition-all ${animLabSelected === 'anim-typing' ? 'bg-purple-600 text-white border-purple-600 shadow-md' : 'bg-white hover:bg-gray-100 border-gray-200 text-gray-700'}`}
-                      >
-                        12. typing (Hero)
-                      </button>
+                      <button onClick={() => setAnimLabSelected('anim-fade-in')} className={`px-3 py-2 text-xs font-bold rounded-lg border text-left transition-all ${animLabSelected === 'anim-fade-in' ? 'bg-purple-600 text-white border-purple-600 shadow-md' : 'bg-white hover:bg-gray-100 border-gray-200 text-gray-700'}`}>1. fadeIn</button>
+                      <button onClick={() => setAnimLabSelected('anim-fade-in-up')} className={`px-3 py-2 text-xs font-bold rounded-lg border text-left transition-all ${animLabSelected === 'anim-fade-in-up' ? 'bg-purple-600 text-white border-purple-600 shadow-md' : 'bg-white hover:bg-gray-100 border-gray-200 text-gray-700'}`}>2. fadeInUp</button>
+                      <button onClick={() => setAnimLabSelected('anim-slide-in-left')} className={`px-3 py-2 text-xs font-bold rounded-lg border text-left transition-all ${animLabSelected === 'anim-slide-in-left' ? 'bg-purple-600 text-white border-purple-600 shadow-md' : 'bg-white hover:bg-gray-100 border-gray-200 text-gray-700'}`}>3. slideInLeft</button>
+                      <button onClick={() => setAnimLabSelected('anim-slide-in-right')} className={`px-3 py-2 text-xs font-bold rounded-lg border text-left transition-all ${animLabSelected === 'anim-slide-in-right' ? 'bg-purple-600 text-white border-purple-600 shadow-md' : 'bg-white hover:bg-gray-100 border-gray-200 text-gray-700'}`}>4. slideInRight</button>
+                      <button onClick={() => setAnimLabSelected('anim-scale-in')} className={`px-3 py-2 text-xs font-bold rounded-lg border text-left transition-all ${animLabSelected === 'anim-scale-in' ? 'bg-purple-600 text-white border-purple-600 shadow-md' : 'bg-white hover:bg-gray-100 border-gray-200 text-gray-700'}`}>5. scaleIn</button>
+                      <button onClick={() => setAnimLabSelected('anim-pulse')} className={`px-3 py-2 text-xs font-bold rounded-lg border text-left transition-all ${animLabSelected === 'anim-pulse' ? 'bg-purple-600 text-white border-purple-600 shadow-md' : 'bg-white hover:bg-gray-100 border-gray-200 text-gray-700'}`}>6. pulse</button>
+                      <button onClick={() => setAnimLabSelected('anim-float')} className={`px-3 py-2 text-xs font-bold rounded-lg border text-left transition-all ${animLabSelected === 'anim-float' ? 'bg-purple-600 text-white border-purple-600 shadow-md' : 'bg-white hover:bg-gray-100 border-gray-200 text-gray-700'}`}>7. float</button>
+                      <button onClick={() => setAnimLabSelected('anim-spin')} className={`px-3 py-2 text-xs font-bold rounded-lg border text-left transition-all ${animLabSelected === 'anim-spin' ? 'bg-purple-600 text-white border-purple-600 shadow-md' : 'bg-white hover:bg-gray-100 border-gray-200 text-gray-700'}`}>8. spin</button>
+                      <button onClick={() => setAnimLabSelected('anim-glow')} className={`px-3 py-2 text-xs font-bold rounded-lg border text-left transition-all ${animLabSelected === 'anim-glow' ? 'bg-purple-600 text-white border-purple-600 shadow-md' : 'bg-white hover:bg-gray-100 border-gray-200 text-gray-700'}`}>9. glow</button>
+                      <button onClick={() => setAnimLabSelected('anim-bounce-hover')} className={`px-3 py-2 text-xs font-bold rounded-lg border text-left transition-all ${animLabSelected === 'anim-bounce-hover' ? 'bg-purple-600 text-white border-purple-600 shadow-md' : 'bg-white hover:bg-gray-100 border-gray-200 text-gray-700'}`}>10. bounce</button>
+                      <button onClick={() => setAnimLabSelected('anim-gradient-bg')} className={`px-3 py-2 text-xs font-bold rounded-lg border text-left transition-all ${animLabSelected === 'anim-gradient-bg' ? 'bg-purple-600 text-white border-purple-600 shadow-md' : 'bg-white hover:bg-gray-100 border-gray-200 text-gray-700'}`}>11. gradientShift</button>
+                      <button onClick={() => setAnimLabSelected('anim-typing')} className={`px-3 py-2 text-xs font-bold rounded-lg border text-left transition-all ${animLabSelected === 'anim-typing' ? 'bg-purple-600 text-white border-purple-600 shadow-md' : 'bg-white hover:bg-gray-100 border-gray-200 text-gray-700'}`}>12. typing</button>
                     </div>
 
-                    {/* Dumbbell Live Sandbox Visualizer */}
                     <div className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-2xl p-6 bg-gray-50 h-[220px]">
-                      
-                      {/* Interactive dumbbell graphic element */}
                       <div 
-                        key={animLabSelected} // key force refresh element to trigger entry animations
+                        key={animLabSelected}
                         className={`flex items-center justify-center p-6 bg-white rounded-xl shadow-lg border border-gray-200 ${
                           animLabSelected === 'anim-fade-in' ? 'anim-fade-in' :
                           animLabSelected === 'anim-fade-in-up' ? 'anim-fade-in-up' :
@@ -1464,16 +1255,6 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
                           animationDuration: animLabSelected === 'anim-spin' ? '1s' : animLabSelected === 'anim-float' ? '2.5s' : '1.5s',
                           animationIterationCount: animLabSelected === 'anim-bounce-hover' ? 'infinite' : undefined
                         }}
-                        onMouseEnter={(e) => {
-                          if (animLabSelected === 'anim-bounce-hover') {
-                            e.currentTarget.style.animation = 'bounce 0.6s ease-in-out infinite';
-                          }
-                        }}
-                        onMouseLeave={(e) => {
-                          if (animLabSelected === 'anim-bounce-hover') {
-                            e.currentTarget.style.animation = '';
-                          }
-                        }}
                       >
                         {animLabSelected === 'anim-typing' ? (
                           <div className="overflow-hidden border-r-2 border-purple-600 whitespace-nowrap text-purple-700 font-mono font-bold text-xs" style={{ animation: 'typing 2s steps(10) infinite' }}>
@@ -1483,44 +1264,35 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
                           <Dumbbell size={48} className={animLabSelected === 'anim-gradient-bg' ? 'text-white' : 'text-purple-600'} />
                         )}
                       </div>
-
                       <span className="text-[10px] text-gray-500 font-mono mt-3 uppercase tracking-widest">
                         Visualizador de GPU Activo
                       </span>
                     </div>
-
                   </div>
                 </div>
               )}
 
-              {/* TAB 3: BEM METHODOLOGY INSPECTOR */}
               {activeAcademicTab === 'bem' && (
                 <div className="space-y-4 animate-fade-in">
                   <div className="bg-purple-50 p-4 rounded-xl border border-purple-100">
                     <h4 className="font-extrabold text-purple-900 text-base mb-1">Estructura BEM (Block-Element-Modifier)</h4>
                     <p className="text-gray-700 text-xs leading-relaxed m-0">
-                      BEM previene el anidamiento excesivo y la especificidad incontrolada de CSS. Abajo puedes ver cómo se estructuran las clases del plan de precios y de la tarjeta de clases utilizando esta convención.
+                      BEM previene el anidamiento excesivo y la especificidad incontrolada de CSS.
                     </p>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    
-                    {/* BEM Card representation */}
                     <div className="border border-purple-200 rounded-xl p-4 bg-purple-50/50 space-y-3 relative overflow-hidden">
                       <span className="absolute top-2 right-2 text-[9px] font-mono font-bold bg-purple-200 text-purple-900 px-1.5 py-0.5 rounded">
                         REPRESENTACIÓN VISUAL
                       </span>
-                      
-                      {/* BEM card layout container */}
                       <div className="border-2 border-purple-500 bg-white p-4 rounded-xl shadow-md text-left">
                         <div className="font-mono text-[9px] text-purple-600 font-bold mb-1">.plan-card .plan-card--featured</div>
                         <h4 className="font-bold text-purple-600 border border-purple-300 px-1 rounded inline-block text-xs font-mono mb-2">.plan-card__name</h4>
-                        
                         <div className="border border-purple-300 p-2 rounded mb-2 bg-purple-50">
                           <div className="font-mono text-[9px] text-purple-600 font-bold">.plan-card__price-box</div>
                           <span className="text-sm font-bold">$59 / mes</span>
                         </div>
-
                         <ul className="text-xs space-y-1">
                           <li className="border border-dashed border-purple-300 p-1 rounded font-mono text-[10px] text-gray-700 flex items-center gap-1">
                             <span className="text-green-600">✔</span> .plan-card__feature-item
@@ -1532,7 +1304,6 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
                       </div>
                     </div>
 
-                    {/* BEM Rules Explanation table */}
                     <div className="border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-3">
                       <h5 className="font-bold text-gray-900 text-sm mb-1">Glosario BEM del Gimnasio</h5>
                       <div className="space-y-2 text-xs leading-normal">
@@ -1542,20 +1313,18 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
                         </div>
                         <div>
                           <b className="text-blue-700 font-mono bg-blue-100 px-1 py-0.5 rounded">Elemento (Element)</b>
-                          <p className="text-gray-600 m-0 text-[11px] mt-0.5">Ligado al bloque con doble guión bajo <code>__</code>: <code>.plan-card__price-box</code>, <code>.class-card__title</code>.</p>
+                          <p className="text-gray-600 m-0 text-[11px] mt-0.5">Ligado al bloque con doble guión bajo <code>__</code>: <code>.plan-card__price-box</code>.</p>
                         </div>
                         <div>
                           <b className="text-secondary font-mono bg-red-100 px-1 py-0.5 rounded">Modificador (Modifier)</b>
-                          <p className="text-gray-600 m-0 text-[11px] mt-0.5">Variación ligada con doble guión medio <code>--</code>: <code>.plan-card--featured</code>, <code>.btn-urban--pulse</code>, <code>.class-card__feature-item--disabled</code>.</p>
+                          <p className="text-gray-600 m-0 text-[11px] mt-0.5">Variación ligada con doble guión medio <code>--</code>: <code>.plan-card--featured</code>.</p>
                         </div>
                       </div>
                     </div>
-
                   </div>
                 </div>
               )}
 
-              {/* TAB 4: LESS COMPARATIVA */}
               {activeAcademicTab === 'less' && (
                 <div className="space-y-4 animate-fade-in">
                   <div className="bg-purple-50 p-4 rounded-xl border border-purple-100">
@@ -1566,25 +1335,18 @@ $transition-standard: all $transition-duration-base $transition-timing-bounce;`
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    
-                    {/* SASS Code */}
                     <div className="border border-purple-200 rounded-xl overflow-hidden flex flex-col items-stretch">
-                      <div className="bg-purple-800 text-white px-3 py-1.5 text-xs font-mono font-bold">
-                        SASS (SCSS Sabor)
-                      </div>
+                      <div className="bg-purple-800 text-white px-3 py-1.5 text-xs font-mono font-bold">SASS (SCSS Sabor)</div>
                       <pre className="p-3 bg-gray-900 text-purple-300 text-xs font-mono m-0 overflow-x-auto h-[220px]">
-{`// Variables con $
-$color-primary: #6C63FF;
+{`$color-primary: #6C63FF;
 $spacing-lg: 1.5rem;
 
-// Mixins explícitos
 @mixin respond-to($bp) {
   @media (min-width: map-get($breakpoints, $bp)) {
     @content;
   }
 }
 
-// Bucle nativo limpio
 @for $i from 1 through 3 {
   .card-delay-#{$i} {
     animation-delay: #{$i * 0.15}s;
@@ -1593,25 +1355,18 @@ $spacing-lg: 1.5rem;
                       </pre>
                     </div>
 
-                    {/* LESS Code */}
                     <div className="border border-indigo-200 rounded-xl overflow-hidden flex flex-col items-stretch">
-                      <div className="bg-indigo-800 text-white px-3 py-1.5 text-xs font-mono font-bold">
-                        LESS (Equivalente)
-                      </div>
+                      <div className="bg-indigo-800 text-white px-3 py-1.5 text-xs font-mono font-bold">LESS (Equivalente)</div>
                       <pre className="p-3 bg-gray-900 text-indigo-300 text-xs font-mono m-0 overflow-x-auto h-[220px]">
-{`// Variables con @
-@color-primary: #6C63FF;
+{`@color-primary: #6C63FF;
 @spacing-lg: 1.5rem;
 
-// Mixins tratados como clases
 .respond-to(@bp) {
-  // LESS requiere plugins para mapas de breakpoints complejos
   @media (min-width: @bp) {
     // contenido
   }
 }
 
-// Bucles simulados con recursión y Guards
 .generar-delays(@n, @i: 1) when (@i <= @n) {
   .card-delay-@{i} {
     animation-delay: (@i * 0.15s);
@@ -1621,95 +1376,66 @@ $spacing-lg: 1.5rem;
 .generar-delays(3);`}
                       </pre>
                     </div>
-
                   </div>
 
                   <div className="bg-gray-50 border border-gray-200 rounded-xl p-3 text-xs leading-normal">
-                    💡 <b>Diferencia clave en producción:</b> Bootstrap 5 se escribe directamente en SASS, lo que facilita sobreescribir las variables del framework de forma nativa en la carpeta <code>vendors/bootstrap-custom.scss</code>. SASS (Dart Sass) compila sustancialmente más rápido que LESS en entornos modernos de empaquetado como Vite o Webpack.
+                    💡 <b>Diferencia clave:</b> Bootstrap 5 se escribe directamente en SASS, lo que facilita sobreescribir las variables del framework de forma nativa.
                   </div>
                 </div>
               )}
 
-              {/* TAB 5: RENDIMIENTO GPU & OPTIMIZATION */}
               {activeAcademicTab === 'perf' && (
                 <div className="space-y-4 animate-fade-in">
                   <div className="bg-purple-50 p-4 rounded-xl border border-purple-100">
                     <h4 className="font-extrabold text-purple-900 text-base mb-1">Rendimiento de Hardware & GPU</h4>
                     <p className="text-gray-700 text-xs leading-relaxed m-0">
-                      Cuando un sitio web tiene muchas transformaciones y animaciones simultáneas (como UrbanFit), un renderizado ineficiente causa lentitud en teléfonos móviles. Evitamos esto con dos propiedades de optimización avanzadas:
+                      Cuando un sitio web tiene muchas transformaciones y animaciones simultáneas, un renderizado ineficiente causa lentitud.
                     </p>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    
-                    {/* will-change panel */}
                     <div className="border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-2 text-xs">
                       <div className="flex items-center gap-2 text-purple-700 font-mono font-bold">
                         <Cpu size={16} /> will-change: transform, opacity;
                       </div>
                       <p className="text-gray-600 m-0 leading-normal">
-                        Esta propiedad notifica al motor gráfico del navegador con antelación que el elemento será animado. El navegador separa la tarjeta del flujo de la página y le asigna su propia <b>capa de hardware en la tarjeta de video (GPU)</b>. 
+                        Notifica al motor gráfico que el elemento será animado. El navegador le asigna su propia <b>capa de hardware en la GPU</b>.
                       </p>
-                      <span className="text-[10px] bg-green-100 text-green-800 font-bold px-1.5 py-0.5 rounded">
-                        Evita parpadeos y caídas de FPS
-                      </span>
                     </div>
 
-                    {/* contain panel */}
                     <div className="border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-2 text-xs">
                       <div className="flex items-center gap-2 text-indigo-700 font-mono font-bold">
                         <Layers size={16} /> contain: layout;
                       </div>
                       <p className="text-gray-600 m-0 leading-normal">
-                        Le indica al navegador que el contenido interno de este componente está totalmente aislado del resto de la página. Si un badge cambia de color o de tamaño adentro, el motor del navegador <b>solo repinta esa pequeña tarjeta</b>, sin recalcular la estructura física de toda la landing page.
+                        Aísla el contenido interno del resto de la página. El navegador <b>solo repinta esa pequeña tarjeta</b>, sin recalcular toda la página.
                       </p>
-                      <span className="text-[10px] bg-indigo-100 text-indigo-800 font-bold px-1.5 py-0.5 rounded">
-                        Optimiza el uso de CPU al mínimo
-                      </span>
                     </div>
-
                   </div>
 
-                  {/* Feature query visual warning helper */}
                   <div className="bg-amber-50 rounded-xl p-4 border border-amber-200 flex items-start gap-3">
                     <AlertTriangle size={20} className="text-amber-600 shrink-0 mt-0.5" />
                     <div>
                       <h5 className="font-extrabold text-amber-950 text-xs mb-1 uppercase tracking-wider font-mono">Detección de Fallbacks con @supports</h5>
                       <p className="text-amber-900 text-xs m-0 leading-normal">
-                        ¿Qué pasa en navegadores sin soporte para CSS Grid o Flexbox? El archivo <code>scss/layout/_grid.scss</code> contiene una query de detección automática. Si se detecta un navegador heredado, la interfaz degrada automáticamente a un sistema estable de <code>float: left</code>, manteniendo el gimnasio UrbanFit 100% operativo y estético en todo momento.
+                        El archivo <code>scss/layout/_grid.scss</code> contiene una query de detección automática. Si se detecta un navegador sin soporte para CSS Grid, la interfaz degrada a <code>float: left</code>.
                       </p>
                     </div>
                   </div>
                 </div>
               )}
-
             </div>
 
-            {/* Panel Academic Footer */}
             <div className="bg-gray-50 border-t border-gray-200 p-4 shrink-0 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-gray-500 font-sans">
               <span>Gimnasio UrbanFit — Demo de Cátedra Profesional</span>
               <div className="flex gap-4">
-                <a 
-                  href="/docs/README.md" 
-                  target="_blank" 
-                  className="text-purple-600 font-bold hover:underline"
-                >
-                  Ver README.md
-                </a>
-                <a 
-                  href="/docs/GUIA_ESTILOS.md" 
-                  target="_blank" 
-                  className="text-purple-600 font-bold hover:underline"
-                >
-                  Ver Guía de Estilos
-                </a>
+                <a href="/docs/README.md" target="_blank" className="text-purple-600 font-bold hover:underline">Ver README.md</a>
+                <a href="/docs/GUIA_ESTILOS.md" target="_blank" className="text-purple-600 font-bold hover:underline">Ver Guía de Estilos</a>
               </div>
             </div>
-
           </div>
         </div>
       )}
-
     </div>
   );
 }

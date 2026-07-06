@@ -2,6 +2,8 @@
    BREAKPOINTS - ABSTRACTS
    ========================================================================== */
 
+@use "sass:color";
+
 // Breakpoint definitions
 $breakpoints: (
   'sm': 576px,

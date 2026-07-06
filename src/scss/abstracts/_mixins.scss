@@ -2,10 +2,13 @@
    MIXINS - ABSTRACTS
    ========================================================================== */
 
+@use "sass:map";
+@use "sass:math";
+
 // Responsive Breakpoints Mixin (Mobile-First)
 @mixin respond-to($breakpoint) {
-  @if map-has-key($breakpoints, $breakpoint) {
-    @media (min-width: map-get($breakpoints, $breakpoint)) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media (min-width: map.get($breakpoints, $breakpoint)) {
       @content;
     }
   } @else {

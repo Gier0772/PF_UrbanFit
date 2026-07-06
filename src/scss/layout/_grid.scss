@@ -2,6 +2,8 @@
    GRID & LAYOUT - FEATURE QUERIES & FALLBACKS
    ========================================================================== */
 
+@use "sass:color";
+
 // 1. CUSTOM BEM REGRID MODULE
 .regrid-grid {
   // Legacy Fallback for browsers with absolutely no grid support (e.g. IE10/11)

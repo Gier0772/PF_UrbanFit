@@ -2,6 +2,8 @@
    NAVBAR - COMPONENTS (BEM METHODOLOGY)
    ========================================================================== */
 
+@use "sass:color";
+
 .navbar-custom {
   position: fixed;
   top: 0;
@@ -62,7 +64,7 @@
     font-family: $font-family-title;
     font-size: $font-size-sm;
     font-weight: $font-weight-semibold;
-    color: shade-color($color-light-300, 60%);
+    color: color.mix(#000000, $color-light-300, 60%);
     text-transform: uppercase;
     letter-spacing: 0.03em;
     position: relative;

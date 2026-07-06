@@ -2,6 +2,9 @@
    KEYFRAME ANIMATIONS - COMPONENTS
    ========================================================================== */
 
+@use "sass:color";
+@use "sass:math";
+
 // 1. Fade In
 @keyframes fadeIn {
   from {

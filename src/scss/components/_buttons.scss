@@ -2,6 +2,8 @@
    BUTTONS - COMPONENTS (BEM METRICAS)
    ========================================================================== */
 
+@use "sass:color";
+
 .btn-urban {
   display: inline-flex;
   align-items: center;
@@ -51,7 +53,7 @@
     box-shadow: 0 4px 15px rgba($color-primary, 0.3);
     
     &:hover {
-      background-color: shade-color($color-primary, 15%);
+      background-color: color.mix(#000000, $color-primary, 15%);
       box-shadow: 0 8px 25px rgba($color-primary, 0.5);
     }
   }
@@ -62,7 +64,7 @@
     box-shadow: 0 4px 15px rgba($color-secondary, 0.3);
     
     &:hover {
-      background-color: shade-color($color-secondary, 15%);
+      background-color: color.mix(#000000, $color-secondary, 15%);
       box-shadow: 0 8px 25px rgba($color-secondary, 0.5);
     }
   }

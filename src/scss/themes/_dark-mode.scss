@@ -2,187 +2,315 @@
    DARK THEME OVERRIDES - THEMES
    ========================================================================== */
 
+@use "sass:color";
+
 .theme-dark {
   background-color: $color-dark-300;
   color: $color-white;
-  
-  // Header / Navbar
+
+  // Textos generales
+  p,
+  .text-muted,
+  .text-gray-600,
+  .text-gray-500 {
+    color: $color-light-200 !important;
+  }
+
+  h1, h2, h3, h4, h5, h6,
+  .section-title__heading {
+    color: $color-white !important;
+  }
+
+  // Navbar
   .navbar-custom {
-    @include glassmorphism($opacity: 0.15, $blur: 18px, $border-opacity: 0.1);
-    
+    background-color: rgba($color-dark-300, 0.95) !important;
+    border-bottom-color: rgba($color-white, 0.1) !important;
+
     &__brand {
-      color: $color-white;
+      color: $color-white !important;
     }
-    
+
     &__link {
-      color: $color-light-200;
-      
+      color: $color-light-200 !important;
+
       &:hover {
-        color: $color-secondary-light;
+        color: $color-secondary-light !important;
       }
-      
+
       &--active {
-        color: $color-secondary-light;
+        color: $color-secondary-light !important;
       }
     }
-    
-    &--scrolled {
-      background-color: rgba($color-dark-200, 0.95);
-      border-bottom-color: rgba($color-white, 0.1);
-    }
   }
-  
-  // Section Titles
-  .section-title {
-    &__heading {
-      color: $color-white;
-    }
-  }
-  
-  // Benefit cards in dark mode
-  .benefit-card {
-    background-color: $color-dark-200;
-    border-color: rgba($color-white, 0.08);
-    
+
+  // Hero
+  .hero-custom {
     &__title {
-      color: $color-white;
+      color: $color-white !important;
     }
-    
-    &__description {
-      color: $color-light-200;
+
+    &__subtitle {
+      color: $color-light-200 !important;
     }
-    
-    &:hover {
-      border-color: rgba($color-secondary, 0.3);
-      box-shadow: 0 15px 35px rgba($color-secondary, 0.15);
+
+    &__badge {
+      background-color: rgba($color-secondary, 0.2) !important;
+      border-color: rgba($color-secondary, 0.4) !important;
+      color: $color-secondary-light !important;
     }
-  }
-  
-  // Class cards in dark mode
-  .class-card {
-    background-color: $color-dark-200;
-    border-color: rgba($color-white, 0.08);
-    
-    &__title {
-      color: $color-white;
-    }
-    
-    &__description {
-      color: $color-light-200;
-    }
-    
-    &__meta {
-      border-top-color: rgba($color-white, 0.08);
-    }
-    
-    &__meta-item {
-      color: $color-light-200;
-      
-      svg {
-        color: $color-secondary-light;
-      }
-    }
-    
-    &:hover {
-      box-shadow: 0 15px 30px rgba($color-primary, 0.2);
+
+    &__stats {
+      background: rgba($color-dark-200, 0.7) !important;
+      border-color: rgba($color-white, 0.1) !important;
     }
   }
-  
-  // Trainer cards in dark mode
-  .trainer-card {
-    background-color: $color-dark-200;
-    border-color: rgba($color-white, 0.08);
-    
-    &__info {
-      background-color: $color-dark-200;
+
+  .stat-item {
+    &__number {
+      color: $color-secondary-light !important;
     }
-    
-    &__name {
-      color: $color-white;
-    }
-    
-    &__bio {
-      color: $color-light-200;
-    }
-  }
-  
-  // Plan cards in dark mode
-  .plan-card {
-    background-color: $color-dark-200;
-    border-color: rgba($color-white, 0.08);
-    
-    &__name {
-      color: $color-white;
-    }
-    
-    &__price-value {
-      color: $color-white;
-    }
-    
-    &__price-currency {
-      color: $color-white;
-    }
-    
-    &__price-period {
-      color: $color-light-200;
-    }
-    
-    &__feature-item {
-      color: $color-light-200;
-      border-bottom-color: rgba($color-white, 0.08);
-    }
-    
-    &--featured {
-      background-color: shade-color($color-secondary, 85%);
-      border-color: $color-secondary;
-      
-      .plan-card__name {
-        color: $color-secondary-light;
-      }
-      
-      .plan-card__price-value {
-        color: $color-secondary-light;
-      }
-      
-      &:hover {
-        box-shadow: 0 20px 45px rgba($color-secondary, 0.35);
-      }
-    }
-  }
-  
-  // Testimonial Carousel in dark mode
-  .testimonial-carousel {
-    &__quote {
-      color: $color-white;
-    }
-    
-    &__name {
-      color: $color-white;
-    }
-    
-    &__role {
-      color: $color-secondary-light;
-    }
-  }
-  
-  // Contact Form in dark mode
-  .contact-form {
-    background-color: $color-dark-200;
-    border-color: rgba($color-white, 0.08);
-    
+
     &__label {
-      color: $color-white;
+      color: $color-light-200 !important;
     }
-    
-    &__input, &__select, &__textarea {
-      background-color: $color-dark-300;
-      border-color: rgba($color-white, 0.1);
-      color: $color-white;
-      
-      &:focus {
-        border-color: $color-secondary;
-        box-shadow: 0 0 10px rgba($color-secondary, 0.2);
+  }
+
+  // Secciones
+  .home-section {
+    &--light {
+      background-color: $color-dark-200 !important;
+    }
+  }
+
+  // Tarjetas
+  .benefit-card {
+    background-color: $color-dark-200 !important;
+    border-color: rgba($color-white, 0.08) !important;
+
+    &__title {
+      color: $color-white !important;
+    }
+
+    &__description {
+      color: $color-light-200 !important;
+    }
+  }
+
+  .class-card {
+    background-color: $color-dark-200 !important;
+    border-color: rgba($color-white, 0.08) !important;
+
+    &__title {
+      color: $color-white !important;
+    }
+
+    &__description {
+      color: $color-light-200 !important;
+    }
+
+    &__meta-item {
+      color: $color-light-200 !important;
+    }
+  }
+
+  .trainer-card {
+    background-color: $color-dark-200 !important;
+    border-color: rgba($color-white, 0.08) !important;
+
+    &__name {
+      color: $color-white !important;
+    }
+
+    &__bio {
+      color: $color-light-200 !important;
+    }
+
+    &__specialty {
+      color: $color-secondary-light !important;
+    }
+  }
+
+  .plan-card {
+    background-color: $color-dark-200 !important;
+    border-color: rgba($color-white, 0.08) !important;
+
+    &__name {
+      color: $color-white !important;
+    }
+
+    &__price-value,
+    &__price-currency {
+      color: $color-white !important;
+    }
+
+    &__price-period {
+      color: $color-light-200 !important;
+    }
+
+    &__feature-item {
+      color: $color-light-200 !important;
+      border-bottom-color: rgba($color-white, 0.08) !important;
+
+      &--disabled {
+        color: $color-light-300 !important;
       }
     }
+
+    &--featured {
+      background-color: color.mix(#000000, $color-secondary, 85%) !important;
+      border-color: $color-secondary !important;
+
+      .plan-card__name,
+      .plan-card__price-value {
+        color: $color-secondary-light !important;
+      }
+    }
+  }
+
+  // Testimonios
+  .testimonial-carousel {
+    .card {
+      background-color: $color-dark-200 !important;
+      border-color: rgba($color-white, 0.08) !important;
+    }
+
+    &__quote {
+      color: $color-white !important;
+    }
+
+    &__name {
+      color: $color-white !important;
+    }
+
+    &__role {
+      color: $color-secondary-light !important;
+    }
+  }
+
+  // Formulario de contacto
+  .contact-form {
+    background-color: $color-dark-200 !important;
+    border-color: rgba($color-white, 0.08) !important;
+
+    &__label {
+      color: $color-white !important;
+    }
+
+    &__input,
+    &__select,
+    &__textarea {
+      background-color: $color-dark-300 !important;
+      border-color: rgba($color-white, 0.1) !important;
+      color: $color-white !important;
+
+      &::placeholder {
+       color: $color-light-300 !important;
+      }
+
+      &:focus {
+        border-color: $color-secondary !important;
+        box-shadow: 0 0 10px rgba($color-secondary, 0.2) !important;
+      }
+    }
+
+    &__checkbox-label {
+      color: $color-light-200 !important;
+    }
+  }
+
+  // Panel académico
+  .bg-white {
+    background-color: $color-dark-200 !important;
+  }
+
+  .border-gray-200 {
+    border-color: rgba($color-white, 0.1) !important;
+  }
+
+  .bg-gray-50,
+  .bg-purple-50 {
+    background-color: $color-dark-300 !important;
+  }
+
+  .text-gray-600,
+  .text-gray-700,
+  .text-gray-500 {
+    color: $color-light-200 !important;
+  }
+
+  .text-purple-900,
+  .text-purple-800,
+  .text-purple-700 {
+    color: $color-secondary-light !important;
+  }
+
+  // Footer
+  .footer-custom {
+    background-color: $color-dark-300 !important;
+  }
+    // Panel Académico - correcciones de texto
+  .bg-white {
+    background-color: $color-dark-200 !important;
+    color: $color-white !important;
+  }
+
+  .border-gray-200 {
+    border-color: rgba($color-white, 0.1) !important;
+  }
+
+  .bg-gray-50,
+  .bg-purple-50 {
+    background-color: $color-dark-300 !important;
+  }
+
+  .text-gray-600,
+  .text-gray-700,
+  .text-gray-500 {
+    color: $color-light-200 !important;
+  }
+
+  .text-purple-900,
+  .text-purple-800,
+  .text-purple-700 {
+    color: $color-secondary-light !important;
+  }
+
+  .text-gray-900 {
+    color: $color-white !important;
+  }
+
+  .text-xs {
+    color: $color-light-200 !important;
+  }
+
+  .font-mono {
+    color: $color-light-200 !important;
+  }
+
+  .bg-gray-800,
+  .bg-gray-900 {
+    background-color: $color-dark-300 !important;
+  }
+
+  .text-green-400,
+  .text-yellow-400,
+  .text-purple-300,
+  .text-indigo-300 {
+    color: $color-secondary-light !important;
+  }
+
+  .bg-purple-100 {
+    background-color: rgba($color-secondary, 0.2) !important;
+  }
+    // Fondo amarillo de la sección @supports
+  .bg-amber-50 {
+    background-color: rgba($color-secondary, 0.15) !important;
+    border-color: rgba($color-secondary, 0.3) !important;
+  }
+
+  .text-amber-950,
+  .text-amber-900,
+  .text-amber-600 {
+    color: $color-secondary-light !important;
   }
 }

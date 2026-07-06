@@ -2,6 +2,8 @@
    HERO - COMPONENTS (BEM METHODOLOGY)
    ========================================================================== */
 
+@use "sass:color";
+
 .hero-custom {
   position: relative;
   min-height: 100vh;
@@ -47,7 +49,7 @@
   &__badge {
     background-color: rgba($color-secondary, 0.15);
     border: 1px solid rgba($color-secondary, 0.3);
-    color: $color-secondary-light;
+    color: color.mix(#ffffff, $color-secondary, 30%);
     font-family: $font-family-mono;
     font-weight: $font-weight-bold;
     font-size: $font-size-xs;
@@ -204,7 +206,7 @@
     font-family: $font-family-title;
     font-size: $font-size-xl;
     font-weight: $font-weight-black;
-    color: $color-secondary-light;
+    color: color.mix(#ffffff, $color-secondary, 30%);
     display: block;
     line-height: 1.1;
     margin-bottom: $spacing-xxs;
